@@ -1,0 +1,9 @@
+.cursor-block {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: $green;
+  position: fixed;
+  transform: translate(-50%, -50%);
+  display: none;
+}
