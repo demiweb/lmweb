@@ -64,7 +64,33 @@ window.addEventListener('mousemove', function (e) {
     let pos = e.pageX;
     box.style.left = e.clientX + "px";
     box.style.top = e.clientY + "px";
+
+    // if (e.target.closest('.cursor-js')) {
+    //     box.classList.add('go-cur');
+    //     let cur = e.target.closest('.cursor-js').dataset.cursor;
+    //     box.querySelector('.cursor-text').innerHTML = cur;
+    // } else {
+    //     box.classList.remove('go-cur');
+    //     box.querySelector('.cursor-text').innerHTML = '';
+    //
+    // }
 });
+window.addEventListener('mouseover', (e) => {
+    if (e.target.closest('.cursor-js')) {
+        box.classList.add('go-cur');
+        let cur = e.target.closest('.cursor-js').dataset.cursor;
+        box.querySelector('.cursor-text').innerHTML = cur;
+    }
+})
+window.addEventListener('mouseout', (e) => {
+
+    // console.log('out')
+    if (e.target.closest('.cursor-js')) {
+        box.classList.remove('go-cur');
+        box.querySelector('.cursor-text').innerHTML = '';
+    }
+})
+
 //cursor following block
 //add counting number to show delay speed
 let counterContainer = [...document.querySelectorAll('.counting-delay')];
@@ -483,14 +509,46 @@ controlVideo();
 
 //typed
 
-var typed = new Typed('.bg-typed pre', {
-    strings: [`${document.querySelector('.bg-typed pre').innerHTML}`],
-    typeSpeed: 120,
+var typed = new Typed('.bg-typed pre.txt + pre', {
+    strings: [`${document.querySelector('.bg-typed pre.txt').innerHTML}`],
+    typeSpeed: 10,
     showCursor: false,
     startDelay: 200,
+    loop: false,
 });
 
 //typed
 
+//click out work
+
+let headWork = [...document.querySelectorAll('.single-our-work__head')];
+
+function openWorkHead() {
+    if (headWork.length) {
+        headWork.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                btn.closest('.single-our-work').classList.toggle('open');
+            })
+        })
+    }
+}
+openWorkHead();
+
+//click out work
+//marquee
+
+const root = document.documentElement;
+const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+const marqueeContent = document.querySelector(".marquee-cont");
+
+root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+for (let i = 0; i < marqueeElementsDisplayed; i++) {
+    marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+}
+
+//modals
+
+//marquee
 
 
