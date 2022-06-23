@@ -7,11 +7,11 @@
   z-index: 10;
 
   &.active {
-    //background-color: $green;
+    background-color: $green !important;
 
     .logo {
       img {
-        filter: brightness(0);
+        filter: brightness(0) !important;
         transition: filter 0.3s ease;
 
       }
@@ -23,7 +23,7 @@
     }
 
     .header-container {
-      border-bottom: 1px solid #000;
+      border-bottom: 1px solid #000 !important;
 
       > .header-menu, > .header-social {
         opacity: 0;
@@ -33,11 +33,11 @@
   }
 
   &.header-fixed {
-    background: $green;
+    background: #000;
 
     .logo {
       img {
-        filter: brightness(0);
+        filter: brightness(0) invert(1);
         transition: filter 0.3s ease;
 
       }
@@ -45,7 +45,7 @@
 
     .burger {
       background: #000;
-      border-color: #000;
+      border-color: #fff;
     }
 
     .header-container {
@@ -61,8 +61,8 @@
           li {
             a {
 
-              color: #000;
-              border-bottom: 1px solid #000;
+              color: #fff;
+              border-bottom: 1px solid #fff;
             }
           }
         }
@@ -715,7 +715,7 @@
   .menu-container {
     width: 100%;
     padding-top: 16px;
-    padding-bottom: 55px;
+    padding-bottom: 155px;
 
     .column {
       width: 100%;
@@ -727,7 +727,7 @@
     }
   }
   .head-soc {
-    bottom: 10px;
+    bottom: 85px;
   }
   .header-title {
     font-size: 22px;
