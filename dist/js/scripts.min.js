@@ -57,7 +57,6 @@ function allLozadImg() {
 allLozadImg();
 
 
-
 //cursor following block
 
 var box = document.getElementById("cursor-id");
@@ -96,6 +95,7 @@ var numberIm = 0;
 var amountImg = 85;
 
 var canvCont = document.querySelector('.canvas-cont');
+
 function canvasStarts() {
     if (canvCont) {
 
@@ -128,9 +128,9 @@ function canvasStarts() {
         var html = canvCont;
         var imgCanvas = new Image();
         imgCanvas.src = currentFrame(0);
-        canvasInner.width=1920;
-        canvasInner.height=1080;
-        imgCanvas.onload=function(){
+        canvasInner.width = 1920;
+        canvasInner.height = 1080;
+        imgCanvas.onload = function () {
             contextCanvas.drawImage(imgCanvas, 0, 0);
         }
 
@@ -145,90 +145,17 @@ function canvasStarts() {
         checkScrolledCanvas();
         window.addEventListener('scroll', () => {
             checkScrolledCanvas();
-            });
+        });
 
 
         preloadImages()
     }
 }
+
 canvasStarts();
 
 
 //change image
-
-
-//cursor2
-// dots is an array of Dot objects,
-// mouse is an object used to track the X and Y position
-// of the mouse, set with a mousemove event listener below
-var dots = [],
-    mouse = {
-        x: 0,
-        y: 0
-    };
-
-// The Dot object used to scaffold the dots
-var Dot = function () {
-    this.x = 0;
-    this.y = 0;
-    this.node = (function () {
-        var n = document.createElement("div");
-        n.className = "";
-        document.body.querySelector('.back-cursor').appendChild(n);
-        return n;
-    }());
-};
-// The Dot.prototype.draw() method sets the position of
-// the object's <div> node
-Dot.prototype.draw = function () {
-    this.node.style.left = this.x + "px";
-    this.node.style.top = this.y + "px";
-};
-
-// Creates the Dot objects, populates the dots array
-for (var i = 0; i < 9; i++) {
-    var d = new Dot();
-    dots.push(d);
-}
-
-// This is the screen redraw function
-function draw() {
-    // Make sure the mouse position is set everytime
-    // draw() is called.
-    var x = mouse.x,
-        y = mouse.y;
-
-    // This loop is where all the 90s magic happens
-    dots.forEach(function (dot, index, dots) {
-        var nextDot = dots[index + 1] || dots[0];
-
-        dot.x = x;
-        dot.y = y;
-        dot.draw();
-        x += (nextDot.x - dot.x) * .82;
-        y += (nextDot.y - dot.y) * .82;
-
-    });
-}
-
-addEventListener("mousemove", function (event) {
-    //event.preventDefault();
-    mouse.x = event.clientX;
-    mouse.y = event.clientY;
-});
-
-// animate() calls draw() then recursively calls itself
-// everytime the screen repaints via requestAnimationFrame().
-function animate() {
-    draw();
-    requestAnimationFrame(animate);
-}
-
-// And get it started by calling animate().
-animate();
-
-
-//cursor2
 
 
 //animations all
@@ -268,11 +195,148 @@ function makeGsap() {
 }
 
 // makeGsap();
+
+
+//swipers
+
+var prodGallery = [...document.querySelectorAll('.our-team__slider.js-slider')];
+
+function prodSlider() {
+    if (!prodGallery.length) {
+
+    } else {
+
+        function U(t, e) {
+            return t.transformEl ? e.find(t.transformEl).css({
+                "backface-visibility": "hidden",
+                "-webkit-backface-visibility": "hidden"
+            }) : e
+        }
+
+        prodGallery.forEach((sld) => {
+
+            let sldCont = sld.querySelector('.our-team__slider-cont');
+            let sldNext = sld.querySelector('.slides-btn__next');
+            let sldPrev = sld.querySelector('.slides-btn__prev');
+            let t = 0;
+            if (window.innerWidth < 769) {
+                t = 0;
+            } else {
+                t = 5;
+            }
+            const swiper2 = new Swiper(sldCont, {
+                init: 1,
+                effect: "cards",
+                perspective: false,
+                allowTouchMove: 0,
+                watchSlidesProgress: true,
+                virtualTranslate: true,
+                loopedSlides: 3,
+                preventInteractionOnTransition: false,
+                speed: 300,
+                loop: true,
+                pagination: {
+                    el: ".our-member__bot .numbs",
+                    type: "fraction",
+                },
+                navigation: {
+                    nextEl: sldNext,
+                    prevEl: sldPrev,
+                },
+                on: {
+                    setTranslate: e => {
+                        const {slides: s} = e, i = {slideShadows: 1, transformEl: null};
+                        for (let e = 0; e < s.length; e += 1) {
+                            const o = s.eq(e), n = o[0].progress, r = Math.min(Math.max(n, -6), 4),
+                                a = o[0].swiperSlideOffset;
+                            let h = -Math.abs(Math.round(n)) + s.length, l = t ? 20 * (0 - r) - a : 1 - r - a,
+                                c = t ? 0 : "".concat(10 * -(0 - r), "px"), d = 1 + .05 * r;
+                            r < 0 ? l = "".concat(l, "px") : r > 0 ? (l = "".concat(l, "px"), c = "200vh", d = .5, h = s.length + 1) : l = "".concat(l, "px");
+                            const u = "".concat(r < 0 ? 1 + (1 - d) * r : 1 - (1 - d) * r),
+                                m = "translate3d(".concat(l, ", ").concat(c, ", 0px) scale(").concat(u, ")");
+                            o[0].style.zIndex = h, U(i, o).transform(m);
+                        }
+                    }, setTransition: (t, e) => {
+                        t.slides.transition(e), function (t) {
+                            const {swiper: e, duration: s, transformEl: i, allSlides: o} = t, {slides: n, activeIndex: r, $wrapperEl: a} = e;
+                            if (e.params.virtualTranslate && 0 !== s) {
+                                let t, s = !1;
+                                t = o ? i ? n.find(i) : n : i ? n.eq(r).find(i) : n.eq(r), t.transitionEnd((() => {
+                                    if (s) return;
+                                    if (!e || e.destroyed) return;
+                                    s = !0, e.animating = !1;
+                                    const t = ["webkitTransitionEnd", "transitionend"];
+                                    for (let e = 0; e < t.length; e += 1) a.trigger(t[e])
+                                }))
+                            }
+                        }({swiper: t, duration: e, transformEl: null})
+                    }
+                }
+
+            });
+
+            sld.addEventListener('click', () => {
+                sld.querySelector('.slides-btn__next').click();
+            });
+        })
+    }
+}
+
+prodSlider();
+
+//scroll slider
+
+var scroGallery = [...document.querySelectorAll('.our-partners-slider.js-slider')];
+
+function scroSlider() {
+    if (!scroGallery.length) {
+
+    } else {
+        scroGallery.forEach((sld) => {
+            let sldCont = sld.querySelector('.our-partners__cont');
+            let sldNext = sld.querySelector('.slides-btn--next');
+            let sldPrev = sld.querySelector('.slides-btn--prev');
+
+            const swiper2 = new Swiper(sldCont, {
+                // Optional parameters
+                loop: false,
+                slidesPerView: 2,
+                slidesPerGroup: 1,
+                speed: 600,
+
+                autoplay: false,
+                spaceBetween: 15,
+
+                breakpoints: {
+                    // when window width is >= 320px
+
+                    // when window width is >= 480px
+                    1110: {
+                        slidesPerView: 'auto',
+                        spaceBetween: 180,
+                    },
+                    700: {
+                        slidesPerView: 3,
+                        spaceBetween: 60,
+                    },
+
+                }
+
+
+            });
+        })
+    }
+}
+
+scroSlider();
+
+//scroll slider
+//swipers
 //animations all
 
 window.addEventListener('mousemove', () => {
 
-})
+});
 window.addEventListener('mouseover', (e) => {
     if (e.target.closest('.cursor-js')) {
         box.classList.add('go-cur');
@@ -283,7 +347,7 @@ window.addEventListener('mouseover', (e) => {
         document.querySelector('.back-cursor').classList.add('opac')
 
     }
-})
+});
 window.addEventListener('mouseout', (e) => {
 
     // console.log('out')
@@ -294,9 +358,34 @@ window.addEventListener('mouseout', (e) => {
     if (e.target.closest('.footer')) {
         document.querySelector('.back-cursor').classList.remove('opac')
     }
-})
+});
 
 //cursor following block
+
+//cursors follow btn
+var btnRound = [...document.querySelectorAll('.btn-r-c')];
+
+function cursorFollowBtn() {
+    if (btnRound.length) {
+        btnRound.forEach((btn) => {
+            btn.addEventListener("mousemove", function(e){
+                const position = btn.getBoundingClientRect();
+                const x = e.clientX - position.left - position.width / 2;
+                const y = e.clientY - position.top - position.height / 2;
+
+                btn.children[0].style.transform = "translate(" + x * 0.35 + "px, " + y * 0.25 + "px)";
+            });
+            btn.addEventListener("mouseout", function(e){
+                btn.children[0].style.transform = "translate(0px, 0px)";
+            });
+        })
+    }
+}
+
+cursorFollowBtn();
+
+
+//cursors follow btn
 //add counting number to show delay speed
 var counterContainer = [...document.querySelectorAll('.counting-delay')];
 
@@ -322,11 +411,16 @@ function scrollAnimations() {
             entries.forEach(entry => {
                 var el = entry.target
                 if (entry.isIntersecting) {
-                    el.style.animationDelay = el.dataset.animDelay + 'ms';
-                    el.style.animationDuration = el.dataset.animDuration + 'ms';
-                    el.style.animationName = el.dataset.anim;
+                    if (el.classList.contains('anim-js')) {
 
-                    el.classList.add('done')
+                    } else {
+                        el.style.animationDelay = el.dataset.animDelay + 'ms';
+                        el.style.animationDuration = el.dataset.animDuration + 'ms';
+                        el.style.animationName = el.dataset.anim;
+                    }
+
+
+                    el.classList.add('done');
                     observer.unobserve(entry.target);
                 }
 
@@ -336,6 +430,14 @@ function scrollAnimations() {
             anim.forEach(animate => {
                 observer.observe(animate)
             })
+        } else {
+
+            anim.forEach(animate => {
+                if (animate.classList.contains('anim-js')) {
+                    observer.observe(animate)
+                }
+
+            })
         }
     }
 }
@@ -343,6 +445,116 @@ function scrollAnimations() {
 scrollAnimations();
 
 //scroll about page
+//anim canvas words
+var jsAnimBlocks = [...document.querySelectorAll('.anim-w')];
+var jsAnimTrig = [...document.querySelectorAll('.single-trig')];
+
+function inViewport(el) {
+    var elH = el.getBoundingClientRect().height,
+        H = window.innerHeight,
+        r = el.getBoundingClientRect(), t = r.top, b = r.bottom;
+    return Math.max(0, t > 0 ? Math.min(elH, H - t) : Math.min(b, H));
+}
+
+var resScrl = 1;
+window.onscroll = function (e) {
+    // print "false" if direction is down and "true" if up
+    if (this.oldScroll > this.scrollY) {
+        resScrl = -1;
+    } else {
+        resScrl = 1;
+    }
+    this.oldScroll = this.scrollY;
+};
+
+
+var Visible3 = function (target, k) {
+    if (!jsAnimBlocks.length) {
+
+    } else {
+
+
+        var btmToDown = target.getBoundingClientRect().bottom - window.innerHeight;
+        var topToTop = target.getBoundingClientRect().top;
+        var targetPosition = {
+                top: window.pageYOffset + target.getBoundingClientRect().top,
+                left: window.pageXOffset + target.getBoundingClientRect().left,
+                right: window.pageXOffset + target.getBoundingClientRect().right,
+                bottom: window.pageYOffset + target.getBoundingClientRect().bottom
+            },
+            // Получаем позиции окна
+            windowPosition = {
+                top: window.pageYOffset,
+                left: window.pageXOffset,
+                right: window.pageXOffset + document.documentElement.clientWidth,
+                bottom: window.pageYOffset + document.documentElement.clientHeight
+            };
+        // console.log('el = ' + k + ' targetPos: top: ' + target.getBoundingClientRect().top + ' window.height = ' + window.innerHeight);
+        if (btmToDown < 0 && // Если позиция нижней части элемента больше позиции верхней чайти окна, то элемент виден сверху
+            topToTop > 0) { // Если позиция левой стороны элемента меньше позиции правой чайти окна, то элемент виден справа
+            // Если элемент полностью видно, то запускаем следующий код
+            jsAnimBlocks[k].classList.add('done');
+            jsAnimBlocks[k].classList.remove('hide');
+            jsAnimBlocks[k].classList.remove('hideBot');
+            if (k === 0) {
+                document.querySelector('.prof-team__info').classList.add('hide');
+            }
+            setTimeout(() => {
+                // jsAnimBlocks[k].classList.add('done');
+                // if (target.previousElementSibling) {
+                //     jsAnimBlocks[k].previousElementSibling.classList.add('hide');
+                //
+                // }
+                // jsAnimBlocks[k].classList.remove('hide');
+
+            }, 60)
+
+
+        } else {
+
+            if (resScrl >= 1) {
+                jsAnimBlocks[k].classList.add('hide');
+                jsAnimBlocks[k].classList.remove('hideBot');
+
+            } else {
+                jsAnimBlocks[k].classList.add('hideBot');
+                jsAnimBlocks[k].classList.remove('hide');
+                if (jsAnimBlocks[0].classList.contains('done')) {
+                    document.querySelector('.prof-team__info').classList.remove('hide');
+                }
+
+            }
+            // print "false" if direction is down and "true" if up
+
+
+            // Если элемент не видно, то запускаем этот код
+            // document.querySelector('.mobile-header-contacts').classList.remove('unvisible');
+        }
+    }
+    // Все позиции элемента
+
+};
+
+
+// Запускаем функцию при прокрутке страницы
+window.addEventListener('scroll', function () {
+    jsAnimTrig.forEach((el, k) => {
+        setTimeout(() => {
+            Visible3(el, k);
+        }, k * 30)
+    })
+
+});
+
+// А также запустим функцию сразу. А то вдруг, элемент изначально видно
+
+jsAnimTrig.forEach((el, k) => {
+    setTimeout(() => {
+        Visible3(el, k);
+    }, k * 30)
+});
+
+//anim canvas words
 
 var profT = document.querySelector('.prof-team')
 
@@ -351,7 +563,7 @@ function scrollProf() {
         var scrollTopT = profT.getBoundingClientRect().top;
         var profTH = profT.offsetHeight / 6;
         var limit = (profT.offsetHeight - profTH) * -1;
-        console.log(scrollTopT + ' scrollTop + ' + profTH);
+        // console.log(scrollTopT + ' scrollTop + ' + profTH);
         if (scrollTopT < limit) {
             profT.classList.add('hide');
             profT.nextElementSibling.classList.add('unhide')
@@ -366,6 +578,7 @@ function scrollProf() {
 
     }
 }
+
 window.addEventListener('scroll', () => {
     scrollProf();
 })
@@ -674,7 +887,6 @@ function changeLinePos() {
 changeLinePos();
 
 
-
 //video modal control
 
 var videoCont = [...document.querySelectorAll('.video-js')];
@@ -761,7 +973,6 @@ function marqqueFnc() {
     if (marqueeContent) {
         var root = document.documentElement;
         var marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
-
 
 
         root.style.setProperty("--marquee-elements", marqueeContent.children.length);
