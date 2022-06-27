@@ -1364,6 +1364,11 @@ main {
     padding: 30px 15px 0;
   }
 }
+@media screen and (max-width: 992px) {
+  .bg-hides {
+    opacity: 1;
+  }
+}
 
 @media screen and (max-width: 600px) {
   .contact-form .container-m > span {
