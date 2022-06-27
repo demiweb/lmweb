@@ -133,9 +133,10 @@
     <div class="global-wrapper" data-barba="container" data-barba-namespace="about">
 
 
-        <section class="about-us__hero">
+        <section class="about-us__hero father-hides">
             <div class="container-m">
-                <div class="about-us__text">
+                <div class="about-us__text rellax-h ml" data-rellax-speed="-0.4" data-rellax-tablet-speed="-1.2"
+                     data-rellax-desktop-speed="-5.6">
                 <span class="title white anim-t">
                     <span><span>אנחנו</span><strong><span>Solutions</span><span>Web</span><span>LM</span></strong></span>
                     <span><span>חברת</span><span> בניית</span><span>אתרים </span><span> ופתרונות</span><span> דיגיטל</span></span>
@@ -164,7 +165,8 @@
                     </div>
                 </div>
             </div>
-            <div class="about-us__bg">
+            <div class="about-us__bg bg-hides rellax-h ml" data-rellax-speed="-0.4" data-rellax-tablet-speed="1.2"
+                 data-rellax-desktop-speed="2.2">
                 <div class="img">
                     <img class="lazyload" data-src="./img/bg-abus.jpg" alt="">
                 </div>
@@ -257,19 +259,9 @@
                                 molestias
                                 pariatur quidem reiciendis sapiente.</p>
                         </div>
-                        <div class="canvas-single anim-w" data-anim-delay="0" data-anim-duration="760"
-                             data-anim="fade-up">
-                            <span>Lorem ipsum dolor sit</span>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur cumque distinctio
-                                esse,
-                                minus possimus tempore unde ut! A aliquam eaque, harum id illum inventore ipsum
-                                molestias
-                                pariatur quidem reiciendis sapiente.</p>
-                        </div>
 
                     </div>
                     <div class="triggers">
-                        <div class="single-trig"></div>
                         <div class="single-trig"></div>
                         <div class="single-trig"></div>
                         <div class="single-trig"></div>
@@ -361,7 +353,7 @@
 
                         </div>
                     </div>
-                    <div class="our-team__slider js-slider anim" data-anim-delay="100" data-anim-duration="820"
+                    <div class="our-team__slider white-bg js-slider anim" data-anim-delay="100" data-anim-duration="820"
                          data-anim="fade-up">
                         <div class="our-team__slider-cont swiper swiper-cards">
                             <div class="swiper-wrapper cursor-js" data-cursor="הַבָּא">
@@ -921,13 +913,35 @@
 <!-- jsdelivr -->
 <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
 
-
+<script src="https://unpkg.com/gsap@latest/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.3/smooth-scrollbar.js"></script>
 
 <script type="text/javascript" class="main-script" src="./js/scripts.min.js"></script>
-<script src="https://unpkg.com/gsap@latest/dist/gsap.min.js"></script>
+
 
 <!-- init barba with a simple opacity transition -->
 <script type="text/javascript">
+
+
+    gsap.set('.footer', { yPercent: -50 })
+
+    const uncover = gsap.timeline({ paused:true })
+
+    uncover
+        .to('.footer', { yPercent: 0, ease: 'none' })
+    ;
+
+    ScrollTrigger.create({
+        trigger: 'main',
+        start: 'bottom bottom',
+        end: '+=75%',
+        animation: uncover,
+        scrub: true,
+        markers: false,
+    })
+
+
     function reinitScripts() {
         const bottomDOM = document.getElementsByTagName("body")[0]
         const newScript = document.createElement("script")

@@ -36,13 +36,35 @@
 <!-- jsdelivr -->
 <script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
 
-
+<script src="https://unpkg.com/gsap@latest/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.3/smooth-scrollbar.js"></script>
 
 <script type="text/javascript" class="main-script" src="./js/scripts.min.js"></script>
-<script src="https://unpkg.com/gsap@latest/dist/gsap.min.js"></script>
+
 
 <!-- init barba with a simple opacity transition -->
 <script type="text/javascript">
+
+
+    gsap.set('.footer', { yPercent: -50 })
+
+    const uncover = gsap.timeline({ paused:true })
+
+    uncover
+        .to('.footer', { yPercent: 0, ease: 'none' })
+    ;
+
+    ScrollTrigger.create({
+        trigger: 'main',
+        start: 'bottom bottom',
+        end: '+=75%',
+        animation: uncover,
+        scrub: true,
+        markers: false,
+    })
+
+
     function reinitScripts() {
         const bottomDOM = document.getElementsByTagName("body")[0]
         const newScript = document.createElement("script")

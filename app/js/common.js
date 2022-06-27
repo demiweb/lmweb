@@ -311,9 +311,13 @@ function scroSlider() {
                     // when window width is >= 320px
 
                     // when window width is >= 480px
-                    1110: {
+                    1390: {
                         slidesPerView: 'auto',
                         spaceBetween: 180,
+                    },
+                    1110: {
+                        slidesPerView: 'auto',
+                        spaceBetween: 90,
                     },
                     700: {
                         slidesPerView: 3,
@@ -363,29 +367,41 @@ window.addEventListener('mouseout', (e) => {
 //cursor following block
 
 //cursors follow btn
-var btnRound = [...document.querySelectorAll('.btn-r-c')];
 
-function cursorFollowBtn() {
-    if (btnRound.length) {
-        btnRound.forEach((btn) => {
-            btn.addEventListener("mousemove", function(e){
-                const position = btn.getBoundingClientRect();
-                const x = e.clientX - position.left - position.width / 2;
-                const y = e.clientY - position.top - position.height / 2;
 
-                btn.children[0].style.transform = "translate(" + x * 0.35 + "px, " + y * 0.25 + "px)";
-            });
-            btn.addEventListener("mouseout", function(e){
-                btn.children[0].style.transform = "translate(0px, 0px)";
-            });
-        })
-    }
+var mArea = [...document.querySelectorAll('.btn-r-c')];
+// --- BUTTON
+
+$('.btn-r-c').mouseleave(function(e){
+    TweenMax.to(this, 0.3, {});
+    TweenMax.to('.btn-round', 0.3,{scale:1, x: 0, y: 0});
+});
+
+$('.btn-r-c').mouseenter(function(e){
+    TweenMax.to(this, 0.3, {});
+    TweenMax.to('.btn-round', 0.3,{scale:1});
+});
+
+$('.btn-r-c').mousemove(function(e){
+    callParallax(e);
+});
+
+function callParallax(e){
+    parallaxIt(e, '.btn-round', 80);
 }
 
-cursorFollowBtn();
+function parallaxIt(e, target, movement){
+    var $this = $('.btn-r-c');
+    var relX = e.pageX - $this.offset().left;
+    var relY = e.pageY - $this.offset().top;
 
+    TweenMax.to(target, 0.3, {
+        x: (relX - $this.width()/2) / $this.width() * movement,
+        y: (relY - $this.height()/2) / $this.height() * movement,
+        ease: Power2.easeOut
+    });
+}
 
-//cursors follow btn
 //add counting number to show delay speed
 var counterContainer = [...document.querySelectorAll('.counting-delay')];
 
@@ -443,6 +459,87 @@ function scrollAnimations() {
 }
 
 scrollAnimations();
+
+var bgHides = document.querySelectorAll('.bg-hides')
+
+function scrollBg() {
+    if (bgHides.length) {
+        var observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                var el = entry.target
+                if (entry.isIntersecting) {
+
+
+                    el.classList.add('done');
+                    entry.target.closest('.father-hides').classList.add('hide-text')
+                    entry.target.closest('.father-hides').classList.add('always')
+                    observer.unobserve(entry.target);
+                } else {
+                    el.classList.remove('done');
+                    entry.target.closest('.father-hides').classList.remove('hide-text')
+
+                }
+
+            })
+        }, {threshold: .45})
+        if (window.innerWidth > 991) {
+            bgHides.forEach(animate => {
+                observer.observe(animate)
+            })
+        } else {
+
+        }
+    }
+}
+
+scrollBg();
+
+//scroll our-section
+
+var ourSec = [...document.querySelectorAll('.our-section')];
+
+function ourSecScroll() {
+    if (ourSec.length) {
+        ourSec.forEach((btn) => {
+            let h = btn.offsetHeight;
+
+            let btnToTop = btn.getBoundingClientRect().bottom;
+            let part =  140 - ((btnToTop/h) * 100);
+            let dp = btn.querySelector('.drop-lines');
+
+            console.log(part);
+            console.log(btnToTop);
+            let lines = btn.querySelectorAll('.line');
+
+            if (part >= 100) {
+                part = 100;
+                lines.forEach((ln, k) => {
+                    setTimeout(() => {
+                        ln.style.height = `${part}%`;
+                    }, k * 40)
+
+                })
+
+                dp.style.setProperty('--wid', '100%');
+            } else {
+                part =  140 - ((btnToTop/h) * 100);
+                lines.forEach((ln, k) => {
+                    setTimeout(() => {
+                        ln.style.height = `${part}%`;
+                    }, k * 40)
+                })
+
+                dp.style.setProperty('--wid', '0');
+            }
+        })
+    }
+}
+ourSecScroll();
+window.addEventListener('scroll', () => {
+    ourSecScroll();
+})
+
+//scroll our-section
 
 //scroll about page
 //anim canvas words
@@ -650,6 +747,59 @@ scrollAnimationsStage();
 $(window).scroll(function (e) {
     $el = $('.header');
     $el.toggleClass('header-fixed', $(this).scrollTop() > 32);
+
+});
+
+var whiBgBlc = [...document.querySelectorAll('.white-bg')];
+
+var whiteBlcFn = function(target) {
+    if (whiBgBlc.length) {
+        var targetPosition = {
+                top: window.pageYOffset + target.getBoundingClientRect().top - 50,
+                left: window.pageXOffset + target.getBoundingClientRect().left,
+                right: window.pageXOffset + target.getBoundingClientRect().right,
+                bottom: window.pageYOffset + target.getBoundingClientRect().bottom
+            },
+            // Получаем позиции окна
+            windowPosition = {
+                top: window.pageYOffset,
+                left: window.pageXOffset,
+                right: window.pageXOffset + document.documentElement.clientWidth,
+                bottom: window.pageYOffset + document.documentElement.clientHeight
+            };
+
+        if (targetPosition.bottom > windowPosition.top && // Если позиция нижней части элемента больше позиции верхней чайти окна, то элемент виден сверху
+            targetPosition.top < windowPosition.top && // Если позиция верхней части элемента меньше позиции нижней чайти окна, то элемент виден снизу
+            targetPosition.right > windowPosition.left && // Если позиция правой стороны элемента больше позиции левой части окна, то элемент виден слева
+            targetPosition.left < windowPosition.right) { // Если позиция левой стороны элемента меньше позиции правой чайти окна, то элемент виден справа
+            // Если элемент полностью видно, то запускаем следующий код
+            setTimeout(() => {
+                document.querySelector('.header').classList.add('white');
+            }, 60)
+
+
+        } else {
+            document.querySelector('.header').classList.remove('white');
+            // Если элемент не видно, то запускаем этот код
+            // document.querySelector('.mobile-header-contacts').classList.remove('unvisible');
+        }
+    }
+}
+window.addEventListener('scroll', function () {
+    whiBgBlc.forEach((el, k) => {
+        setTimeout(() => {
+            whiteBlcFn(el);
+        }, k * 30)
+    })
+
+});
+
+// А также запустим функцию сразу. А то вдруг, элемент изначально видно
+
+whiBgBlc.forEach((el, k) => {
+    setTimeout(() => {
+        whiteBlcFn(el);
+    }, k * 30)
 });
 
 window.onload = () => {
@@ -989,5 +1139,7 @@ marqqueFnc();
 //modals
 
 //marquee
+
+
 
 
