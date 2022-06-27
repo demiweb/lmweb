@@ -5026,9 +5026,6 @@ body.home main .footer {
       -o-transition: none;
       transition: none; }
 
-main {
-  overflow: hidden; }
-
 @media screen and (max-width: 1660px) and (min-width: 1350px) {
   .our-projects__list {
     max-width: 60%; }
