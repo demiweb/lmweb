@@ -159,43 +159,6 @@ canvasStarts();
 
 
 //animations all
-var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
-
-function makeGsap() {
-    if (window.innerWidth > 1179) {
-
-        new ScrollMagic.Scene({triggerElement: ".stp"})
-            .setTween(".stp", {y: "-46%", ease: Linear.easeNone, triggerHook: 0.5, duration: "120%"})
-            .addTo(controller);
-
-        new ScrollMagic.Scene({triggerElement: ".stp2"})
-            .setTween(".stp2", {y: "29%", ease: Linear.easeNone, triggerHook: 0.3, duration: "100%"})
-            .addTo(controller);
-
-        new ScrollMagic.Scene({triggerElement: ".stp3"})
-            .setTween(".stp3", {y: "-24%", ease: Linear.easeNone, triggerHook: 0.4, duration: "130%"})
-            .addTo(controller);
-
-        new ScrollMagic.Scene({triggerElement: "body.home main .footer"})
-            .setTween("body.home main .footer", {y: "54%", ease: Linear.easeNone, triggerHook: 0.4, duration: "110%"})
-            .addTo(controller);
-
-
-        new ScrollMagic.Scene({triggerElement: ".our-work .container"})
-            .setTween(".our-work .container .our-work__container", {
-                y: "22%",
-                ease: Linear.easeNone,
-                triggerHook: 0.5,
-                duration: "90%"
-            })
-
-            // .addIndicators()
-            .addTo(controller);
-    }
-}
-
-// makeGsap();
-
 
 //swipers
 
@@ -371,36 +334,43 @@ window.addEventListener('mouseout', (e) => {
 
 var mArea = [...document.querySelectorAll('.btn-r-c')];
 // --- BUTTON
+function gsapBtnMagnet() {
+    if (mArea.length) {
+        mArea.forEach((btn) => {
+            let btn2 = btn.querySelector('.btn-round');
+            $(btn).mouseleave(function(e){
+                TweenMax.to(this, 0.3, {});
+                TweenMax.to(btn2, 0.3,{scale:1, x: 0, y: 0});
+            });
 
-$('.btn-r-c').mouseleave(function(e){
-    TweenMax.to(this, 0.3, {});
-    TweenMax.to('.btn-round', 0.3,{scale:1, x: 0, y: 0});
-});
+            $(btn).mouseenter(function(e){
+                TweenMax.to(this, 0.3, {});
+                TweenMax.to(btn2, 0.3,{scale:1});
+            });
 
-$('.btn-r-c').mouseenter(function(e){
-    TweenMax.to(this, 0.3, {});
-    TweenMax.to('.btn-round', 0.3,{scale:1});
-});
+            $(btn).mousemove(function(e){
+                callParallax(e, btn2);
+            });
 
-$('.btn-r-c').mousemove(function(e){
-    callParallax(e);
-});
+            function callParallax(e, targ){
+                parallaxIt(e, targ, 80);
+            }
 
-function callParallax(e){
-    parallaxIt(e, '.btn-round', 80);
+            function parallaxIt(e, target, movement){
+                var $this = $(btn2);
+                var relX = e.pageX - $this.offset().left;
+                var relY = e.pageY - $this.offset().top;
+
+                TweenMax.to(target, 0.3, {
+                    x: (relX - $this.width()/2) / $this.width() * movement,
+                    y: (relY - $this.height()/2) / $this.height() * movement,
+                    ease: Power2.easeOut
+                });
+            }
+        })
+    }
 }
-
-function parallaxIt(e, target, movement){
-    var $this = $('.btn-r-c');
-    var relX = e.pageX - $this.offset().left;
-    var relY = e.pageY - $this.offset().top;
-
-    TweenMax.to(target, 0.3, {
-        x: (relX - $this.width()/2) / $this.width() * movement,
-        y: (relY - $this.height()/2) / $this.height() * movement,
-        ease: Power2.easeOut
-    });
-}
+gsapBtnMagnet();
 
 //add counting number to show delay speed
 var counterContainer = [...document.querySelectorAll('.counting-delay')];

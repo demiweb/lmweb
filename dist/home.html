@@ -596,8 +596,8 @@
                                 </div>
 
                             </div>
-                            <div class="text rellax-h ml" data-rellax-speed="0.2"
-                                 >
+                            <div class="text "
+                            >
                                 <span>העברת אתר מוויקס לוורדפרס – כל מה שצריך לדעת</span>
                                 <p>המעבר מוויקס לוורדפרס עשוי להיות מעט מייגע, למי שאין לו את הניסיון הנדרש. עם זאת,
                                     מעבר זה
@@ -615,7 +615,7 @@
                                 </div>
 
                             </div>
-                            <div class="text rellax-h ml" data-rellax-speed="0.2"
+                            <div class="text "
                                  >
                                 <span>Exceed נמכרה לענקית האמריקנית "ג'נסיס"</span>
                                 <p>לפני כחודש פורסם ב"כלכליסט" ש-Exceed נרכשה על ידי חברת ג'נסיס (Genesys) האמריקנית.
@@ -633,7 +633,7 @@
                                 </div>
 
                             </div>
-                            <div class="text rellax-h ml" data-rellax-speed="0.2">
+                            <div class="text" >
                                 <span>העברת אתר מוויקס לוורדפרס – כל מה שצריך לדעת</span>
                                 <p>המעבר מוויקס לוורדפרס עשוי להיות מעט מייגע, למי שאין לו את הניסיון הנדרש. עם זאת,
                                     מעבר זה
@@ -879,23 +879,27 @@
 <!-- init barba with a simple opacity transition -->
 <script type="text/javascript">
 
+    function goFooterSlide() {
+        if (window.innerWidth > 922) {
+            gsap.set('.footer', { yPercent: -50 })
 
-    gsap.set('.footer', { yPercent: -50 })
+            const uncover = gsap.timeline({ paused:true })
 
-    const uncover = gsap.timeline({ paused:true })
+            uncover
+                .to('.footer', { yPercent: 0, ease: 'none' })
+            ;
 
-    uncover
-        .to('.footer', { yPercent: 0, ease: 'none' })
-    ;
-
-    ScrollTrigger.create({
-        trigger: 'main',
-        start: 'bottom bottom',
-        end: '+=75%',
-        animation: uncover,
-        scrub: true,
-        markers: false,
-    })
+            ScrollTrigger.create({
+                trigger: 'main',
+                start: 'bottom bottom',
+                end: '+=75%',
+                animation: uncover,
+                scrub: true,
+                markers: false,
+            })
+        }
+    }
+    goFooterSlide();
 
 
     function reinitScripts() {
@@ -930,29 +934,29 @@
         })
     }
 
-    barba.init({
-        sync: true,
-        transitions: [{
-            async leave(data) {
-                const done = this.async();
-                pageTransition();
-                await delay(1500);
-                done();
-            },
-            async enter(data) {
-
-            },
-            async once(data) {
-
-            }
-        }],
-
-    });
-    barba.hooks.beforeEnter((data) => {
-        // this hook will be called during every transitions
-        console.clear();
-        reinitScripts();
-    });
+    // barba.init({
+    //     sync: true,
+    //     transitions: [{
+    //         async leave(data) {
+    //             const done = this.async();
+    //             pageTransition();
+    //             await delay(1500);
+    //             done();
+    //         },
+    //         async enter(data) {
+    //
+    //         },
+    //         async once(data) {
+    //
+    //         }
+    //     }],
+    //
+    // });
+    // barba.hooks.beforeEnter((data) => {
+    //     // this hook will be called during every transitions
+    //     console.clear();
+    //     reinitScripts();
+    // });
 </script>
 
 

@@ -72,6 +72,8 @@ img.lazyload, video.lazyload {
   -webkit-animation-fill-mode: forwards !important;
           animation-fill-mode: forwards !important;
   opacity: 0; }
+  .anim.done {
+    opacity: 1; }
 
 .anim-stage > * {
   -webkit-animation-fill-mode: forwards !important;
@@ -3302,7 +3304,6 @@ body.home main .footer {
     width: 100%;
     max-width: 718px;
     margin-right: 34%;
-    margin-top: 8%;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -3378,12 +3379,6 @@ body.home main .footer {
     -webkit-box-pack: end;
         -ms-flex-pack: end;
             justify-content: flex-end; }
-  .single-blog:nth-child(1) .text {
-    margin-top: 3%; }
-  .single-blog:nth-child(2) .text {
-    margin-top: 4%; }
-  .single-blog:nth-child(3) .text {
-    margin-top: 5%; }
 
 @media screen and (max-width: 1660px) and (min-width: 1350px) {
   .menu-container {
@@ -3430,7 +3425,7 @@ body.home main .footer {
     font-size: 60px;
     line-height: 1.1; } }
 
-.our-blog__container .our-projects__head .our-projects__link {
+.our-blog {
   overflow: hidden; }
 
 @media screen and (max-width: 1200px) {

@@ -1,6 +1,9 @@
 .anim {
   animation-fill-mode: forwards !important;
   opacity: 0;
+  &.done {
+    opacity: 1;
+  }
 }
 .anim-stage > * {
   animation-fill-mode: forwards !important;
