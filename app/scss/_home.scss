@@ -1653,6 +1653,18 @@ body.home main .footer {
 
 
 @media screen and (max-width: 1660px) and (min-width: 1350px) {
+  .dev-tools_list {
+    margin-top: 90px;
+  }
+  .dev-tools {
+    padding: 100px 0;
+  }
+  .dev-tools__side {
+    padding-top: 110px;
+  }
+  .dev-tools__pic .img {
+    padding-top: 58%;
+  }
   .menu-container {
     padding-top: 20px;
   }
@@ -1664,6 +1676,18 @@ body.home main .footer {
   }
 }
 @media screen and (max-width: 1400px) {
+  .dev-tools_list {
+    margin-top: 70px;
+  }
+  .dev-tools {
+    padding: 70px 0;
+  }
+  .dev-tools__side {
+    padding-top: 80px;
+  }
+  .dev-tools__pic .img {
+    padding-top: 54%;
+  }
   .our-work__container .bg-svg {
     width: 32%;
     transform: translate(-50%, -50%);
