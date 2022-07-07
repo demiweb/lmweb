@@ -28,8 +28,8 @@ function imgRotating3d() {
 
                 .to(image, {
                     ease: 'back.in(2)',
-                    scaleX: 0,
-                    scaleY: 2.5,
+                    scaleX: 1,
+                    scaleY: 1,
                     skewY: gsap.utils.random(-5, 5),
                     translateX: `${m * 200}%`,
                     scrollTrigger: {
@@ -71,21 +71,4 @@ function gridScrollText() {
 
 gridScrollText();
 
-let sqrScrollTrig = [...document.querySelectorAll('.dev-hero__sqr')];
-function trigScrollSqr() {
-    if (sqrScrollTrig.length) {
-        sqrScrollTrig.forEach((btn) => {
-            new ScrollMagic.Scene({
-                triggerElement: tris,
-                triggerHook: 0.85, // show, when scrolled 10% into view
-                duration: `${h * 0.91}px`, // hide 10% before exiting view (80% + 10% from bottom)
-                offset: 50 // move trigger to center of element
-            })
-                .setClassToggle(btn, "visible") // add class to reveal
-                // .addIndicators() // add indicators (requires plugin)
-                .addTo(controller2);
-        })
-    }
-}
-trigScrollSqr();
 

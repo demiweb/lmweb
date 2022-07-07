@@ -304,12 +304,11 @@ scroSlider();
 //image 3d rotating
 
 
-
 // $('.cardBottom').mouseleave(function(){
 //     $('.card').addClass('restore');
 // });
-function obj_hover_rotate($hover_obj, $wrap_obj, $move_obj){
-    $($hover_obj).mousemove(function(ev){
+function obj_hover_rotate($hover_obj, $wrap_obj, $move_obj) {
+    $($hover_obj).mousemove(function (ev) {
         // var clientHeight = $(window).height;
         // var clientWidth = $(window).width;
         // $('.card').removeClass('restore')
@@ -329,21 +328,21 @@ function obj_hover_rotate($hover_obj, $wrap_obj, $move_obj){
 
 
         //$('.txt').val(centerDisX + ", "+ centerDisY);
-        var degX = (Math.abs(centerDisY) / (cardHeight/2)) * 8;
-        var degY = (Math.abs(centerDisX) / (cardWidth/2)) * 18;
+        var degX = (Math.abs(centerDisY) / (cardHeight / 2)) * 8;
+        var degY = (Math.abs(centerDisX) / (cardWidth / 2)) * 18;
         //$('.txt').val(degX + ", "+ degY);
 
-        if(centerDisY < 0 && centerDisX < 0){
-            $($move_obj).css({'transform' : 'translate(0, 0) rotateX('+degX+'deg) rotateY(-'+degY+'deg)'});
+        if (centerDisY < 0 && centerDisX < 0) {
+            $($move_obj).css({'transform': 'translate(0, 0) rotateX(' + degX + 'deg) rotateY(-' + degY + 'deg)'});
         }
-        if(centerDisY < 0 && centerDisX > 0){
-            $($move_obj).css({'transform' : 'translate(0, 0) rotateX('+degX+'deg) rotateY('+degY+'deg)'});
+        if (centerDisY < 0 && centerDisX > 0) {
+            $($move_obj).css({'transform': 'translate(0, 0) rotateX(' + degX + 'deg) rotateY(' + degY + 'deg)'});
         }
-        if(centerDisY > 0 && centerDisX < 0){
-            $($move_obj).css({'transform' : 'translate(0, 0) rotateX(-'+degX+'deg) rotateY(-'+degY+'deg)'});
+        if (centerDisY > 0 && centerDisX < 0) {
+            $($move_obj).css({'transform': 'translate(0, 0) rotateX(-' + degX + 'deg) rotateY(-' + degY + 'deg)'});
         }
-        if(centerDisY > 0 && centerDisX > 0){
-            $($move_obj).css({'transform' : 'translate(0, 0) rotateX(-'+degX+'deg) rotateY('+degY+'deg)'});
+        if (centerDisY > 0 && centerDisX > 0) {
+            $($move_obj).css({'transform': 'translate(0, 0) rotateX(-' + degX + 'deg) rotateY(' + degY + 'deg)'});
         }
     });
 }
@@ -357,13 +356,209 @@ function ifGetRotatingImage() {
 
     }
 }
-ifGetRotatingImage();
+
+// ifGetRotatingImage();
 //image 3d rotating
+//dev-tool
 
-//grid items photo
+const cardTool = [...document.querySelectorAll(".dev-tool")];
+const motionMatchMedia = window.matchMedia("(prefers-reduced-motion)");
+const THRESHOLD = 23;
+function goHoverCardTool() {
+    if (cardTool.length) {
+        cardTool.forEach((btn) => {
+            if (!motionMatchMedia.matches) {
+               btn.addEventListener("mousemove", handleHover);
+                btn.addEventListener("mouseleave", resetStyles);
+            }
+        })
+    }
+}
+goHoverCardTool()
+/*
+ * Read the blog post here:
+ * https://letsbuildui.dev/articles/a-3d-hover-effect-using-css-transforms
+ */
+function handleHover(e, btn) {
+    const { clientX, clientY, currentTarget } = e;
+    const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
+
+    const horizontal = (clientX - offsetLeft) / clientWidth;
+    const vertical = (clientY - offsetTop) / clientHeight;
+    const rotateX = (THRESHOLD / 2 - horizontal * THRESHOLD).toFixed(2);
+    const rotateY = ((vertical * THRESHOLD - THRESHOLD / 0.8) + 368).toFixed(2);
+
+    e.target.closest('.dev-tool').style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1, 1, 1)`;
+}
+
+function resetStyles(e, btn) {
+    e.target.closest('.dev-tool').style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
+}
 
 
-//grid items photo
+
+//dev-tool
+//text repeating
+const getHeight = el => {
+    const computedStyle = getComputedStyle(el);
+
+    let elementHeight = el.clientHeight;  // height with padding
+    elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
+    return elementHeight;
+}
+
+class RepeatTextScrollFx {
+    // DOM elements
+    DOM = {
+        // main element ([data-text-rep])
+        el: null,
+        // all text spans except the last one (this will be the centered one and doesn't translate
+        words: null,
+    }
+    totalWords = 9;
+    tyIncrement = 14;
+    delayIncrement = 0.08;
+    scrollTimeline;
+    observer;
+
+    /**
+     * Constructor.
+     * @param {NodeList} Dom_el - main element ([data-text-rep])
+     */
+    constructor(Dom_el) {
+        this.DOM.el = Dom_el;
+        this.layout();
+        this.setBoundaries();
+        this.createScrollTimeline();
+        this.createObserver();
+
+        window.addEventListener('resize', () => this.setBoundaries());
+    }
+
+    /**
+     * Creates the text spans inside the main element
+     */
+    layout() {
+        const halfWordsCount = Math.floor(this.totalWords / 2);
+        let innerHTML = '';
+
+        for (let i = 0; i < this.totalWords; ++i) {
+
+            let ty;
+            let delay;
+
+            if (i === this.totalWords - 1) {
+                ty = 0;
+                delay = 0;
+            } else if (i < halfWordsCount) {
+                ty = halfWordsCount * this.tyIncrement - this.tyIncrement * i;
+                delay = this.delayIncrement * (halfWordsCount - i) - this.delayIncrement
+
+            } else {
+                ty = -1 * (halfWordsCount * this.tyIncrement - (i - halfWordsCount) * this.tyIncrement);
+                delay = this.delayIncrement * (halfWordsCount - (i - halfWordsCount)) - this.delayIncrement
+            }
+
+            innerHTML += `<span data-delay="${delay}" data-ty="${ty}">${this.DOM.el.innerHTML}</span>`;
+        }
+
+        this.DOM.el.innerHTML = innerHTML;
+        this.DOM.el.classList.add('text-rep');
+
+        this.DOM.words = [...this.DOM.el.querySelectorAll('span')].slice(0, -1);
+    }
+
+    /**
+     * sets the padding bottom and margin top given the amount that the words will translate up/down
+     */
+    setBoundaries() {
+        // Set up the margin top and padding bottom values
+        const paddingBottomMarginTop = getHeight(this.DOM.el) * Math.floor(this.totalWords / 2) * this.tyIncrement / 100;
+        gsap.set(this.DOM.el, {
+            marginTop: paddingBottomMarginTop,
+            paddingBottom: paddingBottomMarginTop
+        });
+    }
+
+    /**
+     * gsap animation timeline
+     * translates the text spans when the element enters the viewport
+     */
+    createScrollTimeline() {
+        this.scrollTimeline = gsap.timeline({paused: true})
+
+            .to(this.DOM.words, {
+                duration: 1,
+                ease: 'none',
+                startAt: {opacity: 0},
+                opacity: 1,
+                yPercent: (_, target) => target.dataset.ty,
+                delay: (_, target) => target.dataset.delay
+            }, 0)
+            .to(this.DOM.words, {
+                duration: 1,
+                ease: 'none',
+                opacity: 0,
+                yPercent: 0,
+                delay: (_, target) => target.dataset.delay
+            });
+    }
+
+    /**
+     * Intersection Observer
+     * Updates the timeline progress when the element is in the viewport
+     */
+    createObserver() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px',
+            threshold: 0
+        };
+
+        // credits: from https://medium.com/elegant-seagulls/parallax-and-scroll-triggered-animations-with-the-intersection-observer-api-and-gsap3-53b58c80b2fa
+        this.observer = new IntersectionObserver(entry => {
+            if (entry[0].intersectionRatio > 0) {
+
+                if (!this.isLoaded) {
+                    this.isLoaded = true;
+                }
+                gsap.ticker.add(this.progressTween);
+
+            } else {
+
+                if (this.isLoaded) {
+                    gsap.ticker.remove(this.progressTween);
+                } else {
+                    this.isLoaded = true;
+                    // add and remove immediately
+                    gsap.ticker.add(this.progressTween, true);
+                }
+
+            }
+        }, observerOptions);
+
+        this.progressTween = () => {
+            // Get scroll distance to bottom of viewport.
+            const scrollPosition = (window.scrollY + window.innerHeight);
+            // Get element's position relative to bottom of viewport.
+            const elPosition = (scrollPosition - this.DOM.el.offsetTop);
+            // Set desired duration.
+            const durationDistance = (window.innerHeight + this.DOM.el.offsetHeight);
+            // Calculate tween progresss.
+            const currentProgress = (elPosition / durationDistance);
+            // Set progress of gsap timeline.
+            this.scrollTimeline.progress(currentProgress);
+        }
+
+        this.observer.observe(this.DOM.el);
+    }
+}
+
+document.querySelectorAll('.dev-tools__word p').forEach(textEl => {
+    new RepeatTextScrollFx(textEl);
+});
+
+//text repeating
 
 window.addEventListener('mousemove', () => {
 
@@ -397,43 +592,45 @@ window.addEventListener('mouseout', (e) => {
 
 
 var mArea = [...document.querySelectorAll('.btn-r-c')];
+
 // --- BUTTON
 function gsapBtnMagnet() {
     if (mArea.length) {
         mArea.forEach((btn) => {
             let btn2 = btn.querySelector('.btn-round');
-            $(btn).mouseleave(function(e){
+            $(btn).mouseleave(function (e) {
                 TweenMax.to(this, 0.3, {});
-                TweenMax.to(btn2, 0.3,{scale:1, x: 0, y: 0});
+                TweenMax.to(btn2, 0.3, {scale: 1, x: 0, y: 0});
             });
 
-            $(btn).mouseenter(function(e){
+            $(btn).mouseenter(function (e) {
                 TweenMax.to(this, 0.3, {});
-                TweenMax.to(btn2, 0.3,{scale:1});
+                TweenMax.to(btn2, 0.3, {scale: 1});
             });
 
-            $(btn).mousemove(function(e){
+            $(btn).mousemove(function (e) {
                 callParallax(e, btn2);
             });
 
-            function callParallax(e, targ){
+            function callParallax(e, targ) {
                 parallaxIt(e, targ, 80);
             }
 
-            function parallaxIt(e, target, movement){
+            function parallaxIt(e, target, movement) {
                 var $this = $(btn2);
                 var relX = e.pageX - $this.offset().left;
                 var relY = e.pageY - $this.offset().top;
 
                 TweenMax.to(target, 0.3, {
-                    x: (relX - $this.width()/2) / $this.width() * movement,
-                    y: (relY - $this.height()/2) / $this.height() * movement,
+                    x: (relX - $this.width() / 2) / $this.width() * movement,
+                    y: (relY - $this.height() / 2) / $this.height() * movement,
                     ease: Power2.easeOut
                 });
             }
         })
     }
 }
+
 gsapBtnMagnet();
 
 //add counting number to show delay speed
@@ -538,7 +735,7 @@ function ourSecScroll() {
             let h = btn.offsetHeight;
 
             let btnToTop = btn.getBoundingClientRect().bottom;
-            let part =  140 - ((btnToTop/h) * 100);
+            let part = 140 - ((btnToTop / h) * 100);
             let dp = btn.querySelector('.drop-lines');
 
             console.log(part);
@@ -556,7 +753,7 @@ function ourSecScroll() {
 
                 dp.style.setProperty('--wid', '100%');
             } else {
-                part =  140 - ((btnToTop/h) * 100);
+                part = 140 - ((btnToTop / h) * 100);
                 lines.forEach((ln, k) => {
                     setTimeout(() => {
                         ln.style.height = `${part}%`;
@@ -568,6 +765,7 @@ function ourSecScroll() {
         })
     }
 }
+
 ourSecScroll();
 window.addEventListener('scroll', () => {
     ourSecScroll();
@@ -717,6 +915,16 @@ scrollProf();
 
 //scroll about page
 
+//smooth try
+
+
+//smooth try
+
+$(".btn-go-dwn").click(function() {
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $(".dev-hero__bot").offset().top
+    }, 500);
+});
 var animt = document.querySelectorAll('.anim-t')
 
 function scrollText() {
@@ -730,7 +938,7 @@ function scrollText() {
                 }
 
             })
-        }, {threshold: .5})
+        }, {threshold: .4})
 
         animt.forEach(animate => {
             observer.observe(animate)
@@ -786,7 +994,7 @@ $(window).scroll(function (e) {
 
 var whiBgBlc = [...document.querySelectorAll('.white-bg')];
 
-var whiteBlcFn = function(target) {
+var whiteBlcFn = function (target) {
     if (whiBgBlc.length) {
         var targetPosition = {
                 top: window.pageYOffset + target.getBoundingClientRect().top - 50,
@@ -925,6 +1133,60 @@ controlChildMenu();
 
 var rellax = new Rellax('.rellax-h', {});
 $('.rellax-v').paroller();
+let cardsImages = [...document.querySelectorAll('.single-project .card')];
+
+function cardsMovement() {
+    if (cardsImages.length) {
+        cardsImages.forEach((btn, k) => {
+            let topTop = btn.getBoundingClientRect().top - window.innerHeight;
+            let botTop = btn.getBoundingClientRect().bottom;
+            // console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
+            if (topTop <= 0 && botTop  >= 0) {
+                let trans = botTop / 11;
+                if (k + 1 % 2) {
+                    btn.querySelector('img').style.transform = `translate(0, -${trans}px)`;
+
+                } else {
+                    trans = trans * (-1);
+                    btn.querySelector('img').style.transform = `translate(0, -${trans}px)`;
+
+                }
+            }
+        })
+    }
+}
+
+let paralls = [...document.querySelectorAll('.parall')];
+
+function parallsRoll() {
+    if (paralls.length) {
+        paralls.forEach((btn) => {
+            let topTop = btn.getBoundingClientRect().top - window.innerHeight;
+            let botTop = btn.getBoundingClientRect().bottom;
+            let speed = btn.dataset.speed;
+            console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
+            if (topTop <= 0 && botTop - window.innerHeight >= 0) {
+                let trans = (botTop / speed) * 2;
+                if (btn.dataset.side === -1) {
+
+                    btn.style.transform = `translate(0, ${trans}px)`;
+
+                } else {
+
+
+                    btn.style.transform = `translate(0, -${trans}px)`;
+
+                }
+            }
+        })
+    }
+}
+// parallsRoll();
+cardsMovement();
+window.addEventListener('scroll', () => {
+    cardsMovement();
+    // parallsRoll();
+})
 
 //parallax
 var menuLang = [...document.querySelectorAll('.lang > span')];
@@ -948,6 +1210,7 @@ controlLang();
 var burger = [...document.querySelectorAll('.burger')];
 var header = document.querySelector('.header');
 var backdrop = document.querySelector('.backdrop');
+
 
 function randomNumber(min, max) {
     min = Math.ceil(min);
@@ -989,7 +1252,42 @@ function burgerControl() {
 }
 
 burgerControl();
+//change colored sqr
+function randomNumber2(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+function changeColored2(rec) {
+    var n1 = randomNumber(0, 15);
+    var n2 = randomNumber(0, 15);
+    var n3 = randomNumber(0, 15);
+    rec.forEach((btn, k) => {
+        btn.classList.remove('gr');
+    })
+    rec.forEach((btn2, l) => {
+        if (l === n1 || l === n2 || l === n3) {
+            btn2.classList.add('gr');
+        }
+    })
+}
+let sqrBurg = [...document.querySelectorAll('.dev-hero__sqr')]
+function burgerControl2() {
+    if (sqrBurg.length) {
+        sqrBurg.forEach((btn) => {
+            var rects = [...document.querySelectorAll('svg path')];
+            setInterval(() => {
+                changeColored2(rects)
+            }, 1400);
+
+        })
+    }
+}
+
+burgerControl2();
+
+//change colored sqr
 //line indicator function
 
 var lineInd = document.querySelector('.line-menu');

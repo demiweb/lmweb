@@ -5,6 +5,8 @@
   align-items: flex-start;
   justify-content: flex-start;
   margin-top: -104px;
+  overflow: hidden;
+  position: relative;
 
 }
 
@@ -12,17 +14,35 @@
   width: 100%;
   padding: 140px 0;
 }
+body {
+  //overflow: hidden;
+}
+.smooth-scroll-wrapper {
+  //position: fixed;
+  //z-index: 2;
+  //top: 0;
+  //left: 0;
+  //overflow: hidden;
+  width: 100%;
+  //height: 100vh;
+}
 
 .dev-hero__top {
   width: 100%;
   background: #232323;
   height: 100vh;
   padding-top: 104px;
-
+  position: relative;
+  .about-bg {
+    transform: rotateY(180deg);
+    height: 100%;
+  }
   .container {
     height: 100%;
     display: flex;
     align-items: center;
+    position: relative;
+    z-index: 2;
     justify-content: flex-start;
 
     position: relative;
@@ -44,14 +64,22 @@
 .dev-hero__sqr {
   position: absolute;
   top: 0;
-  right: calc(50% - 15px);
-
+  right: calc(55% - 15px);
+  width: calc(45% + 15px);
+  margin-left: -4%;
+  margin-top: -60px;
   svg {
     width: 100%;
-    margin-left: -10%;
-    margin-top: -120px;
+
     path {
       overflow: hidden;
+      stroke: #fff;
+      transition: stroke 0.6s ease;
+      &.green, &.gr {
+        stroke: #00FFCC;
+        transition: stroke 0.6s ease;
+
+      }
     }
   }
 }
@@ -77,7 +105,7 @@
     opacity: 0;
     transition: opacity 0.5s ease;
 
-    img {
+    img, video {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -258,9 +286,16 @@
     padding-top: 68%;
     overflow: hidden;
 
+    transition: opacity 0.4s ease, transform 0.7s ease;
+    transition-delay: 0.5s;
+    &.done {
+      transform: perspective(3000px) rotateY(32deg);
+      transition: opacity 0.4s ease, transform 0.7s ease;
+
+    }
     &::after {
       position: absolute;
-      background: rgba(18, 18, 18, 0.18);
+      background: rgba(18, 18, 18, 0.12);
       top: 0;
       left: 0;
       bottom: 0;
@@ -269,13 +304,16 @@
       content: '';
     }
 
-    img {
+    img, video {
       width: 100%;
       height: 100%;
       object-fit: cover;
       position: absolute;
       top: 0;
       left: 0;
+      //perspective: 1000px;
+      //perspective-origin: left;
+
     }
   }
 }
@@ -296,7 +334,8 @@
   align-items: center;
   justify-content: center;
   width: calc((100% / 5) - (35% / 6));
-
+  transform-style: preserve-3d;
+  will-change: transform;
   .img {
     width: auto;
     height: 150px;
@@ -320,12 +359,20 @@
     line-height: 30px;
     text-align: center;
     color: #C4C4C4;
+    transition: transform 0.3s ease;
+  }
+  &:hover {
+    p {
+      transform: translateZ(12px);
+      transition: transform 0.3s ease;
+
+    }
   }
 }
 
 .dev-tools__word {
   width: 100%;
-  padding: 140px 0;
+  padding: 100px 0;
   box-sizing: border-box;
 
   p {
@@ -336,6 +383,34 @@
     font-style: normal;
     direction: ltr;
     text-align: center;
+    position: relative;
+    margin-top: 0 !important;
+    padding-bottom: 0 !important;
+    span {
+      width: 100%;
+      display: inline-block;
+      &:nth-child(1), &:nth-child(5) {
+        opacity: 0.3 !important;
+      }
+      &:nth-child(2), &:nth-child(6) {
+        opacity: 0.4 !important;
+      }
+      &:nth-child(3), &:nth-child(7) {
+        opacity: 0.5 !important;
+      }
+      &:nth-child(4), &:nth-child(8) {
+        opacity: 0.6 !important;
+      }
+      &:not(:last-child) {
+        -webkit-text-stroke: 1px #fff;
+        text-stroke: 1px #fff;
+        -webkit-text-fill-color: transparent;
+        text-fill-color: transparent;
+        color: rgba(0,0,0,0);
+        position: absolute;
+
+      }
+    }
   }
 }
 
@@ -477,7 +552,7 @@
     line-height: 1.1;
   }
   .dev-tools__word {
-    padding: 80px 0;
+    padding: 70px 0;
   }
   .dev-tools__text p {
     font-size: 14px;
@@ -497,6 +572,10 @@
   }
   .dev-hero__text {
     max-width: calc(65% - 15px);
+  }
+  .dev-hero__sqr {
+    right: calc(65% - 15px);
+    width: calc(42% + 15px);
   }
   .dev-hero__text .sub-title {
     font-size: 18px;
@@ -566,6 +645,9 @@
 }
 
 @media screen and (max-width: 700px) {
+  .dev-tools__word {
+    padding: 30px 0;
+  }
   .dev-hero__text .sub-title {
     font-size: 14px;
     line-height: 1.1;
@@ -590,6 +672,13 @@
 }
 
 @media screen and (max-width: 600px) {
+  .dev-hero__sqr {
+    top: 14%;
+    width: 39%;
+    right: auto;
+    left: 0;
+    opacity: 0.6;
+  }
   .grid-invest {
     width: 100%;
     grid-template-columns: repeat(4, 1fr);
