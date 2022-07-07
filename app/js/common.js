@@ -885,6 +885,7 @@ jsAnimTrig.forEach((el, k) => {
 
 //anim canvas words
 
+
 var profT = document.querySelector('.prof-team')
 
 function scrollProf() {
