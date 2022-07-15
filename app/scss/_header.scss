@@ -33,7 +33,7 @@
   }
 
   &.header-fixed {
-    background: #000;
+    background: rgba(255, 255, 255, 0);
 
     .logo {
       img {
@@ -67,6 +67,28 @@
           }
         }
       }
+    }
+    &.white {
+      background: rgba(255, 255, 255, 0);
+      .logo {
+        img {
+          filter: brightness(0);
+        }
+      }
+      .header-container {
+        > .header-social {
+          ul {
+            li {
+              a {
+
+                color: #000;
+                border-bottom: 1px solid #000;
+              }
+            }
+          }
+        }
+      }
+
     }
   }
 }
@@ -571,6 +593,7 @@
   main {
     padding-top: 83px;
   }
+
   .burger {
     width: 54px;
     height: 54px;
@@ -705,6 +728,13 @@
     height: calc(100vh - 63px);
   }
   main {
+    padding-top: 63px;
+
+  }
+  .dev-hero {
+    margin-top: -63px;
+  }
+  .dev-hero__top {
     padding-top: 63px;
   }
   .burger {

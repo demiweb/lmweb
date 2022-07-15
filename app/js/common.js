@@ -158,44 +158,9 @@ canvasStarts();
 //change image
 
 
+
+
 //animations all
-var controller = new ScrollMagic.Controller({globalSceneOptions: {triggerHook: "onEnter", duration: "200%"}});
-
-function makeGsap() {
-    if (window.innerWidth > 1179) {
-
-        new ScrollMagic.Scene({triggerElement: ".stp"})
-            .setTween(".stp", {y: "-46%", ease: Linear.easeNone, triggerHook: 0.5, duration: "120%"})
-            .addTo(controller);
-
-        new ScrollMagic.Scene({triggerElement: ".stp2"})
-            .setTween(".stp2", {y: "29%", ease: Linear.easeNone, triggerHook: 0.3, duration: "100%"})
-            .addTo(controller);
-
-        new ScrollMagic.Scene({triggerElement: ".stp3"})
-            .setTween(".stp3", {y: "-24%", ease: Linear.easeNone, triggerHook: 0.4, duration: "130%"})
-            .addTo(controller);
-
-        new ScrollMagic.Scene({triggerElement: "body.home main .footer"})
-            .setTween("body.home main .footer", {y: "54%", ease: Linear.easeNone, triggerHook: 0.4, duration: "110%"})
-            .addTo(controller);
-
-
-        new ScrollMagic.Scene({triggerElement: ".our-work .container"})
-            .setTween(".our-work .container .our-work__container", {
-                y: "22%",
-                ease: Linear.easeNone,
-                triggerHook: 0.5,
-                duration: "90%"
-            })
-
-            // .addIndicators()
-            .addTo(controller);
-    }
-}
-
-// makeGsap();
-
 
 //swipers
 
@@ -311,9 +276,13 @@ function scroSlider() {
                     // when window width is >= 320px
 
                     // when window width is >= 480px
-                    1110: {
+                    1390: {
                         slidesPerView: 'auto',
                         spaceBetween: 180,
+                    },
+                    1110: {
+                        slidesPerView: 'auto',
+                        spaceBetween: 90,
                     },
                     700: {
                         slidesPerView: 3,
@@ -333,6 +302,265 @@ scroSlider();
 //scroll slider
 //swipers
 //animations all
+
+//image 3d rotating
+
+
+// $('.cardBottom').mouseleave(function(){
+//     $('.card').addClass('restore');
+// });
+function obj_hover_rotate($hover_obj, $wrap_obj, $move_obj) {
+    $($hover_obj).mousemove(function (ev) {
+        // var clientHeight = $(window).height;
+        // var clientWidth = $(window).width;
+        // $('.card').removeClass('restore')
+        var oEvent = ev || event;
+
+
+        var cardWidth = parseInt($($wrap_obj).css('width'));
+        var cardHeight = parseInt($($wrap_obj).css('height'));
+        var cardLeft = window.innerWidth / 2;
+
+        var cardTop = parseInt(document.querySelector($wrap_obj).getBoundingClientRect().top);
+
+        // console.log(oEvent.clientX + ' left = ' + cardTop);
+        var centerDisX = oEvent.clientX - cardLeft;
+        var centerDisY = oEvent.clientY - cardTop;
+        // console.log(centerDisX)
+
+
+        //$('.txt').val(centerDisX + ", "+ centerDisY);
+        var degX = (Math.abs(centerDisY) / (cardHeight / 2)) * 8;
+        var degY = (Math.abs(centerDisX) / (cardWidth / 2)) * 18;
+        //$('.txt').val(degX + ", "+ degY);
+
+        if (centerDisY < 0 && centerDisX < 0) {
+            $($move_obj).css({'transform': 'translate(0, 0) rotateX(' + degX + 'deg) rotateY(-' + degY + 'deg)'});
+        }
+        if (centerDisY < 0 && centerDisX > 0) {
+            $($move_obj).css({'transform': 'translate(0, 0) rotateX(' + degX + 'deg) rotateY(' + degY + 'deg)'});
+        }
+        if (centerDisY > 0 && centerDisX < 0) {
+            $($move_obj).css({'transform': 'translate(0, 0) rotateX(-' + degX + 'deg) rotateY(-' + degY + 'deg)'});
+        }
+        if (centerDisY > 0 && centerDisX > 0) {
+            $($move_obj).css({'transform': 'translate(0, 0) rotateX(-' + degX + 'deg) rotateY(' + degY + 'deg)'});
+        }
+    });
+}
+
+
+function ifGetRotatingImage() {
+    if (document.querySelector('.dev-tools__pic')) {
+        obj_hover_rotate("body", ".dev-tools__pic", ".img-rot");
+
+    } else {
+
+    }
+}
+
+// ifGetRotatingImage();
+//image 3d rotating
+//dev-tool
+
+const cardTool = [...document.querySelectorAll(".dev-tool")];
+const motionMatchMedia = window.matchMedia("(prefers-reduced-motion)");
+const THRESHOLD = 23;
+function goHoverCardTool() {
+    if (cardTool.length) {
+        cardTool.forEach((btn) => {
+            if (!motionMatchMedia.matches) {
+               btn.addEventListener("mousemove", handleHover);
+                btn.addEventListener("mouseleave", resetStyles);
+            }
+        })
+    }
+}
+goHoverCardTool()
+/*
+ * Read the blog post here:
+ * https://letsbuildui.dev/articles/a-3d-hover-effect-using-css-transforms
+ */
+function handleHover(e, btn) {
+    const { clientX, clientY, currentTarget } = e;
+    const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
+
+    const horizontal = (clientX - offsetLeft) / clientWidth;
+    const vertical = (clientY - offsetTop) / clientHeight;
+    const rotateX = (THRESHOLD / 2 - horizontal * THRESHOLD).toFixed(2);
+    const rotateY = ((vertical * THRESHOLD - THRESHOLD / 0.8) + 368).toFixed(2);
+
+    e.target.closest('.dev-tool').style.transform = `perspective(${clientWidth}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg) scale3d(1, 1, 1)`;
+}
+
+function resetStyles(e, btn) {
+    e.target.closest('.dev-tool').style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
+}
+
+
+
+//dev-tool
+//text repeating
+const getHeight = el => {
+    const computedStyle = getComputedStyle(el);
+
+    let elementHeight = el.clientHeight;  // height with padding
+    elementHeight -= parseFloat(computedStyle.paddingTop) + parseFloat(computedStyle.paddingBottom);
+    return elementHeight;
+}
+
+class RepeatTextScrollFx {
+    // DOM elements
+    DOM = {
+        // main element ([data-text-rep])
+        el: null,
+        // all text spans except the last one (this will be the centered one and doesn't translate
+        words: null,
+    }
+    totalWords = 9;
+    tyIncrement = 14;
+    delayIncrement = 0.08;
+    scrollTimeline;
+    observer;
+
+    /**
+     * Constructor.
+     * @param {NodeList} Dom_el - main element ([data-text-rep])
+     */
+    constructor(Dom_el) {
+        this.DOM.el = Dom_el;
+        this.layout();
+        this.setBoundaries();
+        this.createScrollTimeline();
+        this.createObserver();
+
+        window.addEventListener('resize', () => this.setBoundaries());
+    }
+
+    /**
+     * Creates the text spans inside the main element
+     */
+    layout() {
+        const halfWordsCount = Math.floor(this.totalWords / 2);
+        let innerHTML = '';
+
+        for (let i = 0; i < this.totalWords; ++i) {
+
+            let ty;
+            let delay;
+
+            if (i === this.totalWords - 1) {
+                ty = 0;
+                delay = 0;
+            } else if (i < halfWordsCount) {
+                ty = halfWordsCount * this.tyIncrement - this.tyIncrement * i;
+                delay = this.delayIncrement * (halfWordsCount - i) - this.delayIncrement
+
+            } else {
+                ty = -1 * (halfWordsCount * this.tyIncrement - (i - halfWordsCount) * this.tyIncrement);
+                delay = this.delayIncrement * (halfWordsCount - (i - halfWordsCount)) - this.delayIncrement
+            }
+
+            innerHTML += `<span data-delay="${delay}" data-ty="${ty}">${this.DOM.el.innerHTML}</span>`;
+        }
+
+        this.DOM.el.innerHTML = innerHTML;
+        this.DOM.el.classList.add('text-rep');
+
+        this.DOM.words = [...this.DOM.el.querySelectorAll('span')].slice(0, -1);
+    }
+
+    /**
+     * sets the padding bottom and margin top given the amount that the words will translate up/down
+     */
+    setBoundaries() {
+        // Set up the margin top and padding bottom values
+        const paddingBottomMarginTop = getHeight(this.DOM.el) * Math.floor(this.totalWords / 2) * this.tyIncrement / 100;
+        gsap.set(this.DOM.el, {
+            marginTop: paddingBottomMarginTop,
+            paddingBottom: paddingBottomMarginTop
+        });
+    }
+
+    /**
+     * gsap animation timeline
+     * translates the text spans when the element enters the viewport
+     */
+    createScrollTimeline() {
+        this.scrollTimeline = gsap.timeline({paused: true})
+
+            .to(this.DOM.words, {
+                duration: 1,
+                ease: 'none',
+                startAt: {opacity: 0},
+                opacity: 1,
+                yPercent: (_, target) => target.dataset.ty,
+                delay: (_, target) => target.dataset.delay
+            }, 0)
+            .to(this.DOM.words, {
+                duration: 1,
+                ease: 'none',
+                opacity: 0,
+                yPercent: 0,
+                delay: (_, target) => target.dataset.delay
+            });
+    }
+
+    /**
+     * Intersection Observer
+     * Updates the timeline progress when the element is in the viewport
+     */
+    createObserver() {
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px 0px',
+            threshold: 0
+        };
+
+        // credits: from https://medium.com/elegant-seagulls/parallax-and-scroll-triggered-animations-with-the-intersection-observer-api-and-gsap3-53b58c80b2fa
+        this.observer = new IntersectionObserver(entry => {
+            if (entry[0].intersectionRatio > 0) {
+
+                if (!this.isLoaded) {
+                    this.isLoaded = true;
+                }
+                gsap.ticker.add(this.progressTween);
+
+            } else {
+
+                if (this.isLoaded) {
+                    gsap.ticker.remove(this.progressTween);
+                } else {
+                    this.isLoaded = true;
+                    // add and remove immediately
+                    gsap.ticker.add(this.progressTween, true);
+                }
+
+            }
+        }, observerOptions);
+
+        this.progressTween = () => {
+            // Get scroll distance to bottom of viewport.
+            const scrollPosition = (window.scrollY + window.innerHeight);
+            // Get element's position relative to bottom of viewport.
+            const elPosition = (scrollPosition - this.DOM.el.offsetTop);
+            // Set desired duration.
+            const durationDistance = (window.innerHeight + this.DOM.el.offsetHeight);
+            // Calculate tween progresss.
+            const currentProgress = (elPosition / durationDistance);
+            // Set progress of gsap timeline.
+            this.scrollTimeline.progress(currentProgress);
+        }
+
+        this.observer.observe(this.DOM.el);
+    }
+}
+
+document.querySelectorAll('.dev-tools__word p').forEach(textEl => {
+    new RepeatTextScrollFx(textEl);
+});
+
+//text repeating
 
 window.addEventListener('mousemove', () => {
 
@@ -363,29 +591,50 @@ window.addEventListener('mouseout', (e) => {
 //cursor following block
 
 //cursors follow btn
-var btnRound = [...document.querySelectorAll('.btn-r-c')];
 
-function cursorFollowBtn() {
-    if (btnRound.length) {
-        btnRound.forEach((btn) => {
-            btn.addEventListener("mousemove", function(e){
-                const position = btn.getBoundingClientRect();
-                const x = e.clientX - position.left - position.width / 2;
-                const y = e.clientY - position.top - position.height / 2;
 
-                btn.children[0].style.transform = "translate(" + x * 0.35 + "px, " + y * 0.25 + "px)";
+var mArea = [...document.querySelectorAll('.btn-r-c')];
+
+// --- BUTTON
+function gsapBtnMagnet() {
+    if (mArea.length) {
+        mArea.forEach((btn) => {
+            let btn2 = btn.querySelector('.btn-round');
+            $(btn).mouseleave(function (e) {
+                TweenMax.to(this, 0.3, {});
+                TweenMax.to(btn2, 0.3, {scale: 1, x: 0, y: 0});
             });
-            btn.addEventListener("mouseout", function(e){
-                btn.children[0].style.transform = "translate(0px, 0px)";
+
+            $(btn).mouseenter(function (e) {
+                TweenMax.to(this, 0.3, {});
+                TweenMax.to(btn2, 0.3, {scale: 1});
             });
+
+            $(btn).mousemove(function (e) {
+                callParallax(e, btn2);
+            });
+
+            function callParallax(e, targ) {
+                parallaxIt(e, targ, 80);
+            }
+
+            function parallaxIt(e, target, movement) {
+                var $this = $(btn2);
+                var relX = e.pageX - $this.offset().left;
+                var relY = e.pageY - $this.offset().top;
+
+                TweenMax.to(target, 0.3, {
+                    x: (relX - $this.width() / 2) / $this.width() * movement,
+                    y: (relY - $this.height() / 2) / $this.height() * movement,
+                    ease: Power2.easeOut
+                });
+            }
         })
     }
 }
 
-cursorFollowBtn();
+gsapBtnMagnet();
 
-
-//cursors follow btn
 //add counting number to show delay speed
 var counterContainer = [...document.querySelectorAll('.counting-delay')];
 
@@ -443,6 +692,88 @@ function scrollAnimations() {
 }
 
 scrollAnimations();
+
+var bgHides = document.querySelectorAll('.bg-hides')
+
+function scrollBg() {
+    if (bgHides.length) {
+        var observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                var el = entry.target
+                if (entry.isIntersecting) {
+
+
+                    el.classList.add('done');
+                    entry.target.closest('.father-hides').classList.add('hide-text')
+                    entry.target.closest('.father-hides').classList.add('always')
+                    observer.unobserve(entry.target);
+                } else {
+                    el.classList.remove('done');
+                    entry.target.closest('.father-hides').classList.remove('hide-text')
+
+                }
+
+            })
+        }, {threshold: .45})
+        if (window.innerWidth > 991) {
+            bgHides.forEach(animate => {
+                observer.observe(animate)
+            })
+        } else {
+
+        }
+    }
+}
+
+scrollBg();
+
+//scroll our-section
+
+var ourSec = [...document.querySelectorAll('.our-section')];
+
+function ourSecScroll() {
+    if (ourSec.length) {
+        ourSec.forEach((btn) => {
+            let h = btn.offsetHeight;
+
+            let btnToTop = btn.getBoundingClientRect().bottom;
+            let part = 140 - ((btnToTop / h) * 100);
+            let dp = btn.querySelector('.drop-lines');
+
+            console.log(part);
+            console.log(btnToTop);
+            let lines = btn.querySelectorAll('.line');
+
+            if (part >= 100) {
+                part = 100;
+                lines.forEach((ln, k) => {
+                    setTimeout(() => {
+                        ln.style.height = `${part}%`;
+                    }, k * 40)
+
+                })
+
+                dp.style.setProperty('--wid', '100%');
+            } else {
+                part = 140 - ((btnToTop / h) * 100);
+                lines.forEach((ln, k) => {
+                    setTimeout(() => {
+                        ln.style.height = `${part}%`;
+                    }, k * 40)
+                })
+
+                dp.style.setProperty('--wid', '0');
+            }
+        })
+    }
+}
+
+ourSecScroll();
+window.addEventListener('scroll', () => {
+    ourSecScroll();
+})
+
+//scroll our-section
 
 //scroll about page
 //anim canvas words
@@ -556,6 +887,7 @@ jsAnimTrig.forEach((el, k) => {
 
 //anim canvas words
 
+
 var profT = document.querySelector('.prof-team')
 
 function scrollProf() {
@@ -586,6 +918,66 @@ scrollProf();
 
 //scroll about page
 
+//smooth try
+
+
+//smooth try
+
+$(".btn-go-dwn").click(function() {
+    $([document.documentElement, document.body]).animate({
+        scrollTop: $(".dev-hero__bot").offset().top
+    }, 500);
+});
+function checkMatrixCanvas() {
+    if ([...document.querySelectorAll('.matrix-canvas')].length) {
+        let canvasMatrix = document.querySelector('.matrix-canvas'),
+            ctx = canvasMatrix.getContext('2d');
+        canvasMatrix.width = window.innerWidth;
+        canvasMatrix.height = window.innerHeight;
+        let fontSize = 10,
+            columns = canvasMatrix.width / fontSize;
+        let drops = [];
+        for (var i = 0; i < columns; i++) {
+            drops[i] = 1;
+        }
+        if (window.innerWidth < 800) {
+            fontSize = 18;
+            columns = canvasMatrix.width / fontSize;
+            for (var i = 0; i < columns; i++) {
+                drops[i] = 1;
+            }
+        }
+
+        //canvas matrix
+
+        var lettersMatrix = 'ABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZABCDEFGHIJKLMNOPQRSTUVXYZ';
+        lettersMatrix = lettersMatrix.split('');
+
+        function draws2() {
+            ctx.fillStyle = 'rgba(0, 0, 0, .1)';
+            ctx.fillRect(0, 0, canvasMatrix.width, canvasMatrix.height);
+            for (var i = 0; i < drops.length; i++) {
+                var text = lettersMatrix[Math.floor(Math.random() * lettersMatrix.length)];
+                ctx.fillStyle = '#00FFCC';
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                drops[i]++;
+                if (drops[i] * fontSize > canvasMatrix.height && Math.random() > .95) {
+                    drops[i] = 0;
+                }
+            }
+        }
+
+        setInterval(draws2, 37);
+
+
+
+//canvas matrix
+
+    }
+}
+
+checkMatrixCanvas();
+
 var animt = document.querySelectorAll('.anim-t')
 
 function scrollText() {
@@ -596,10 +988,11 @@ function scrollText() {
                 if (entry.isIntersecting) {
                     el.classList.add('done')
                     observer.unobserve(entry.target);
+
                 }
 
             })
-        }, {threshold: .5})
+        }, {threshold: .4})
 
         animt.forEach(animate => {
             observer.observe(animate)
@@ -650,6 +1043,59 @@ scrollAnimationsStage();
 $(window).scroll(function (e) {
     $el = $('.header');
     $el.toggleClass('header-fixed', $(this).scrollTop() > 32);
+
+});
+
+var whiBgBlc = [...document.querySelectorAll('.white-bg')];
+
+var whiteBlcFn = function (target) {
+    if (whiBgBlc.length) {
+        var targetPosition = {
+                top: window.pageYOffset + target.getBoundingClientRect().top - 50,
+                left: window.pageXOffset + target.getBoundingClientRect().left,
+                right: window.pageXOffset + target.getBoundingClientRect().right,
+                bottom: window.pageYOffset + target.getBoundingClientRect().bottom
+            },
+            // Получаем позиции окна
+            windowPosition = {
+                top: window.pageYOffset,
+                left: window.pageXOffset,
+                right: window.pageXOffset + document.documentElement.clientWidth,
+                bottom: window.pageYOffset + document.documentElement.clientHeight
+            };
+
+        if (targetPosition.bottom > windowPosition.top && // Если позиция нижней части элемента больше позиции верхней чайти окна, то элемент виден сверху
+            targetPosition.top < windowPosition.top && // Если позиция верхней части элемента меньше позиции нижней чайти окна, то элемент виден снизу
+            targetPosition.right > windowPosition.left && // Если позиция правой стороны элемента больше позиции левой части окна, то элемент виден слева
+            targetPosition.left < windowPosition.right) { // Если позиция левой стороны элемента меньше позиции правой чайти окна, то элемент виден справа
+            // Если элемент полностью видно, то запускаем следующий код
+            setTimeout(() => {
+                document.querySelector('.header').classList.add('white');
+            }, 60)
+
+
+        } else {
+            document.querySelector('.header').classList.remove('white');
+            // Если элемент не видно, то запускаем этот код
+            // document.querySelector('.mobile-header-contacts').classList.remove('unvisible');
+        }
+    }
+}
+window.addEventListener('scroll', function () {
+    whiBgBlc.forEach((el, k) => {
+        setTimeout(() => {
+            whiteBlcFn(el);
+        }, k * 30)
+    })
+
+});
+
+// А также запустим функцию сразу. А то вдруг, элемент изначально видно
+
+whiBgBlc.forEach((el, k) => {
+    setTimeout(() => {
+        whiteBlcFn(el);
+    }, k * 30)
 });
 
 window.onload = () => {
@@ -741,6 +1187,60 @@ controlChildMenu();
 
 var rellax = new Rellax('.rellax-h', {});
 $('.rellax-v').paroller();
+let cardsImages = [...document.querySelectorAll('.single-project .card')];
+
+function cardsMovement() {
+    if (cardsImages.length) {
+        cardsImages.forEach((btn, k) => {
+            let topTop = btn.getBoundingClientRect().top - window.innerHeight;
+            let botTop = btn.getBoundingClientRect().bottom;
+            // console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
+            if (topTop <= 0 && botTop  >= 0) {
+                let trans = botTop / 11;
+                if (k + 1 % 2) {
+                    btn.querySelector('img').style.transform = `translate(0, -${trans}px)`;
+
+                } else {
+                    trans = trans * (-1);
+                    btn.querySelector('img').style.transform = `translate(0, -${trans}px)`;
+
+                }
+            }
+        })
+    }
+}
+
+let paralls = [...document.querySelectorAll('.parall')];
+
+function parallsRoll() {
+    if (paralls.length) {
+        paralls.forEach((btn) => {
+            let topTop = btn.getBoundingClientRect().top - window.innerHeight;
+            let botTop = btn.getBoundingClientRect().bottom;
+            let speed = btn.dataset.speed;
+            console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
+            if (topTop <= 0 && botTop - window.innerHeight >= 0) {
+                let trans = (botTop / speed) * 2;
+                if (btn.dataset.side === -1) {
+
+                    btn.style.transform = `translate(0, ${trans}px)`;
+
+                } else {
+
+
+                    btn.style.transform = `translate(0, -${trans}px)`;
+
+                }
+            }
+        })
+    }
+}
+// parallsRoll();
+cardsMovement();
+window.addEventListener('scroll', () => {
+    cardsMovement();
+    // parallsRoll();
+})
 
 //parallax
 var menuLang = [...document.querySelectorAll('.lang > span')];
@@ -764,6 +1264,7 @@ controlLang();
 var burger = [...document.querySelectorAll('.burger')];
 var header = document.querySelector('.header');
 var backdrop = document.querySelector('.backdrop');
+
 
 function randomNumber(min, max) {
     min = Math.ceil(min);
@@ -805,7 +1306,42 @@ function burgerControl() {
 }
 
 burgerControl();
+//change colored sqr
+function randomNumber2(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 
+function changeColored2(rec) {
+    var n1 = randomNumber(0, 15);
+    var n2 = randomNumber(0, 15);
+    var n3 = randomNumber(0, 15);
+    rec.forEach((btn, k) => {
+        btn.classList.remove('gr');
+    })
+    rec.forEach((btn2, l) => {
+        if (l === n1 || l === n2 || l === n3) {
+            btn2.classList.add('gr');
+        }
+    })
+}
+let sqrBurg = [...document.querySelectorAll('.dev-hero__sqr')]
+function burgerControl2() {
+    if (sqrBurg.length) {
+        sqrBurg.forEach((btn) => {
+            var rects = [...document.querySelectorAll('svg path')];
+            setInterval(() => {
+                changeColored2(rects)
+            }, 1400);
+
+        })
+    }
+}
+
+burgerControl2();
+
+//change colored sqr
 //line indicator function
 
 var lineInd = document.querySelector('.line-menu');
@@ -989,5 +1525,7 @@ marqqueFnc();
 //modals
 
 //marquee
+
+
 
 
