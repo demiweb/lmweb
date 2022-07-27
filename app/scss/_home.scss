@@ -512,6 +512,7 @@ body.home main .footer {
     }
 
     &::after {
+
       content: '*';
       color: #00FFCC;
       transition: color 0.3s ease;
@@ -1312,6 +1313,13 @@ body.home main .footer {
 
   &:nth-child(odd) {
     margin-left: 134px;
+    .card {
+      .img {
+        img {
+          margin-top: -35%;
+        }
+      }
+    }
   }
 
   .card {
@@ -2135,7 +2143,7 @@ body.home main .footer {
     margin-top: 10%;
   }
   .single-project .card .img img {
-    margin-top: 15% !important;
+    margin-top: 4% !important;
   }
   .our-projects__list {
   }

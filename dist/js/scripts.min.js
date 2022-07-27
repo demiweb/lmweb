@@ -157,6 +157,15 @@ canvasStarts();
 
 //change image
 
+//scroll notebook
+
+let noteBg = document.querySelector('.conts-notes');
+
+function showNoteHide() {
+
+}
+//scroll notebook
+
 
 
 
@@ -1197,12 +1206,29 @@ function cardsMovement() {
             // console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
             if (topTop <= 0 && botTop  >= 0) {
                 let trans = botTop / 11;
-                if (k + 1 % 2) {
-                    btn.querySelector('img').style.transform = `translate(0, -${trans}px)`;
+                if ((k + 1) % 2 === 0) {
 
+                    if (btn.querySelector('img')) {
+                        if (window.innerWidth < 600) {
+                            trans = trans / 2;
+                        }
+                        btn.querySelector('img').style.transform = `translate(0, -${trans}px)`;
+                    } else {
+
+                        btn.querySelector('svg').style.transform = `translate(0, -${trans}px)`;
+                    }
                 } else {
-                    trans = trans * (-1);
-                    btn.querySelector('img').style.transform = `translate(0, -${trans}px)`;
+                    trans = -trans;
+                    if (btn.querySelector('img')) {
+                        if (window.innerWidth < 600) {
+                            trans = trans / 2;
+                        }
+                        btn.querySelector('img').style.transform = `translate(0, ${-trans * 1.5}px)`;
+                    } else {
+
+                        btn.querySelector('svg').style.transform = `translate(0, ${-trans * 1.5}px)`;
+                    }
+
 
                 }
             }
@@ -1210,36 +1236,50 @@ function cardsMovement() {
     }
 }
 
-let paralls = [...document.querySelectorAll('.parall')];
+let paralls = [...document.querySelectorAll('.paralls')];
 
 function parallsRoll() {
     if (paralls.length) {
-        paralls.forEach((btn) => {
+        paralls.forEach((btn, k) => {
             let topTop = btn.getBoundingClientRect().top - window.innerHeight;
             let botTop = btn.getBoundingClientRect().bottom;
-            let speed = btn.dataset.speed;
-            console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
-            if (topTop <= 0 && botTop - window.innerHeight >= 0) {
-                let trans = (botTop / speed) * 2;
-                if (btn.dataset.side === -1) {
+            // console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
+            if (topTop <= 0 && botTop  >= 0) {
+                let trans = botTop / 11;
+                if ((k + 1) % 2 === 0) {
 
-                    btn.style.transform = `translate(0, ${trans}px)`;
+                    if (btn.querySelector('img')) {
+                        if (window.innerWidth < 600) {
+                            trans = trans / 2;
+                        }
+                        btn.querySelector('img').style.transform = `translate(0, -${trans}px)`;
+                    } else {
 
+                        btn.querySelector('svg').style.transform = `translate(0, -${trans}px)`;
+                    }
                 } else {
+                    trans = -trans;
+                    if (btn.querySelector('img')) {
+                        if (window.innerWidth < 600) {
+                            trans = trans / 2;
+                        }
+                        btn.querySelector('img').style.transform = `translate(0, ${-trans * 1.5}px)`;
+                    } else {
 
+                        btn.querySelector('svg').style.transform = `translate(0, ${-trans * 1.5}px)`;
+                    }
 
-                    btn.style.transform = `translate(0, -${trans}px)`;
 
                 }
             }
         })
     }
 }
-// parallsRoll();
+parallsRoll();
 cardsMovement();
 window.addEventListener('scroll', () => {
     cardsMovement();
-    // parallsRoll();
+    parallsRoll();
 })
 
 //parallax

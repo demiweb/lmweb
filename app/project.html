@@ -9,6 +9,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./css/main.min.css">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
 
 </head>
 <body class="" data-barba="wrapper">
@@ -23,8 +26,9 @@
             <div class="dev-hero__top ">
 
                 <div class="container">
-                    <div class="single-project__hero">
-                        <div class="left">
+                    <div class="single-project__hero counting-delay">
+                        <div class="left anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade-up">
                             <div class="bg-svg">
                                 <svg width="606" height="339" viewBox="-12 -12 630 368" fill="none"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -54,7 +58,8 @@
                             </span>
                             <p>רני גילה את הצילום במקרה במהלך שירותו הקרבי והתאהב באמנות הצילום לכל סוגיו, למזלנו.</p>
                         </div>
-                        <div class="right">
+                        <div class="right anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade">
                             <p>UX/UI <br>
                                 HTML/CSS <br>
                                 WORDPRESS</p>
@@ -67,9 +72,10 @@
                 </div>
             </div>
         </section>
-        <section class="single-project__info">
+        <section class="single-project__info dev-hero__bot">
             <div class="project-photos">
-                <div class="project-photos__cont">
+                <div class="project-photos__cont anim" data-anim-delay="0" data-anim-duration="760"
+                     data-anim="fade-up">
                     <div class="img">
                         <img class="lazyload" data-src="./img/prs2.jpg" alt="">
                     </div>
@@ -81,8 +87,9 @@
             <div class="project-rules">
                 <div class="container">
                     <div class="project-rules__cont">
-                        <div class="project-rules__head">
-                            <div class="top">
+                        <div class="project-rules__head counting-delay">
+                            <div class="top anim" data-anim-delay="0" data-anim-duration="760"
+                                 data-anim="fade">
                                 <span class="title anim-t white">
                                     <span><strong><span>מה</span><span>הקטע ?</span></strong></span>
                                 </span>
@@ -90,7 +97,8 @@
 
                                 </div>
                             </div>
-                            <div class="bot">
+                            <div class="bot anim" data-anim-delay="0" data-anim-duration="760"
+                                 data-anim="fade-up">
                                 <div class="text">
 
                                     <p>המטרה הייתה לבנות אתר מנימליסטי המשלב את אופי האומן, תיק עבודות ומכירת עבודות
@@ -127,9 +135,11 @@
             </div>
         </section>
 
+
         <div class="project-rules__note">
             <div class="container">
-                <div class="note">
+                <div class="note anim" data-anim-delay="0" data-anim-duration="760"
+                     data-anim="fade">
                     <div class="img book">
                         <img src="./img/notebook.png" alt="">
                     </div>
@@ -138,13 +148,19 @@
                     <!--                    </div>-->
                 </div>
             </div>
-            <img src="./img/bgnote.jpg" alt="">
+            <div class="conts-notes">
+
+                <img src="./img/bgnote.jpg" alt="">
+            </div>
+
+
 
         </div>
         <section class="size-preview">
             <div class="container">
                 <div class="size-preview__cont">
-                    <div class="project-rules__head">
+                    <div class="project-rules__head anim" data-anim-delay="0" data-anim-duration="760"
+                         data-anim="fade-up">
                         <div class="top">
                                 <span class="title anim-t white">
                                     <span><strong><span>מערכת</span><span>רשת</span></strong></span>
@@ -156,16 +172,18 @@
 
 
                     </div>
-                    <div class="size-preview__sizes">
-                        <div class="phone">
+                    <div class="size-preview__sizes counting-delay">
+                        <div class="phone anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade-up">
                             <div class="phn">
-                                <img src="./img/phn.png" alt="">
+                                <img src="./img/phnd.png" alt="">
                             </div>
                             <div class="phn-i">
                                 <img src="./img/phn-1.jpg" alt="">
                             </div>
                         </div>
-                        <div class="tablet">
+                        <div class="tablet anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade-up">
                             <div class="tabl-lines">
                                 <img src="./img/tablet-bg.png" alt="">
                             </div>
@@ -178,19 +196,109 @@
                         </div>
 
                     </div>
+                    <div class="big-size-img paralls anim" data-anim-delay="0" data-anim-duration="760"
+                         data-anim="fade">
+                        <div class="img">
+                            <img class="lazyload" data-src="./img/sz-b1.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="project-rules__head counting-delay">
+                        <div class="top anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade">
+                                <span class="title anim-t white">
+                                    <span><strong><span>מה</span><span>הקטע ?</span></strong></span>
+                                </span>
+                            <div class="line-ball">
+
+                            </div>
+                        </div>
+                        <div class="bot anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade">
+                            <div class="text">
+
+                                <p>המטרה הייתה לבנות אתר מנימליסטי המשלב את אופי האומן, תיק עבודות ומכירת עבודות
+                                    ולתת מענה לכל בקשות הלקוח.
+                                </p>
+                                <p>בנינו אתר וורדפרס עם אלמנטים מיוחדים, שלא מבוסס על תבנית קיימת, אלא בהתאמה אישית
+                                    שעוצב ע"י ריקי ארז ואופיין ע"י דניאל הראל.
+                                </p>
+                            </div>
+
+                            <a href="" class="btn btn--green" style="--x:0; --y:0;"><span>דברו איתנו</span></a>
+                        </div>
+
+                    </div>
+
+                    <div class="size-multi-phones counting-delay">
+                        <div class="phone anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade">
+                            <div class="phn">
+                                <img src="./img/phnd.png" alt="">
+                            </div>
+                            <div class="phn-i">
+                                <img src="./img/phni1.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="phone anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade">
+                            <div class="phn">
+                                <img src="./img/phnd.png" alt="">
+                            </div>
+                            <div class="phn-i">
+                                <img src="./img/phn-1.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="phone anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade">
+                            <div class="phn">
+                                <img src="./img/phnd.png" alt="">
+                            </div>
+                            <div class="phn-i">
+                                <img src="./img/phn-1.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="big-size-img paralls anim" data-anim-delay="0" data-anim-duration="760"
+                         data-anim="fade">
+                        <div class="img">
+                            <img class="lazyload" data-src="./img/sz2bg.jpg" alt="">
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
-        <section class="our-projects stp2 ">
+        <section class="our-projects stp2" >
             <div class="container-m">
-                <div class="our-projects__cont dev-hero__bot">
+                <div class="our-projects__cont">
+                    <div class="our-projects__head">
+                        <a class="our-projects__link">
+                            <div class="btn-r-c">
+                                <div class="btn-round">
+                                    <img src="./img/text-round-1.svg" alt="" class="text">
+                                    <img src="./img/arr-w-l.svg" alt="">
+                                </div>
+                            </div>
+                            לכל הפרויקטים
+                        </a>
+                        <div class="our-projects__text anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade">
+                        <span class="title white anim-t">
+                            <span><span>הפרויקטים </span></span> <br>
+<span><strong><span>שלנו</span></strong></span>
+                        </span>
+                            <div class="line-ball"></div>
+                            <p>תנו הצצה למה שאנחנו אוהבים לעשות: אתרים ודפי נחיתה שאפיינו, עיצבנו, פיתחנו והידקנו לכדי
+                                שלמות.
+                            </p>
+                        </div>
+                    </div>
                     <div class="our-projects__list counting-delay">
 
                         <a href="" class="single-project anim rellax-h ml" data-anim-delay="0" data-anim-duration="760"
                            data-anim="fade" data-rellax-speed="0.0" data-rellax-desktop-speed="-0.1">
                             <div class="card">
                                 <div class="img">
-                                    <img class="lazyload " data-src="./img/img-p2.jpg" alt="">
+                                    <img class="lazyload "  data-src="./img/img-p2.jpg" alt="">
                                 </div>
 
                             </div>
@@ -238,33 +346,6 @@
                                 <p>עיצוב UI/UX, קונספט, תאגיד, וורדפרס</p>
                             </div>
                         </a>
-                        <a href="" class="single-project anim rellax-h ml" data-anim-delay="0" data-anim-duration="760"
-                           data-anim="fade" data-rellax-speed="0.0" data-rellax-desktop-speed="-0.1">
-                            <div class="card">
-                                <div class="img">
-                                    <img class="lazyload " data-src="./img/img-p3.jpg" alt="">
-                                </div>
-
-                            </div>
-                            <div class="text">
-                                <span>RANI BRUCHSTEIN</span>
-                                <p>עיצוב UI/UX, קונספט, תאגיד, וורדפרס</p>
-                            </div>
-                        </a>
-                        <a href="" class="single-project anim rellax-h ml" data-anim-delay="0" data-anim-duration="760"
-                           data-anim="fade" data-rellax-speed="0.0" data-rellax-desktop-speed="0.1">
-                            <div class="card">
-                                <div class="img">
-                                    <img class="lazyload " data-src="./img/img-p3.jpg" alt="">
-                                </div>
-
-                            </div>
-                            <div class="text">
-                                <span>VidiPlus</span>
-                                <p>עיצוב UI/UX, קונספט, תאגיד, וורדפרס</p>
-                            </div>
-                        </a>
-
                     </div>
                 </div>
 
