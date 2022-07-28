@@ -79,6 +79,8 @@ img.lazyload, video.lazyload {
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease; }
+    .anim.single-project.done {
+      opacity: 1 !important; }
 
 .anim-stage > * {
   -webkit-animation-fill-mode: forwards !important;
