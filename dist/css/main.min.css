@@ -71,6 +71,7 @@ img.lazyload, video.lazyload {
 .anim {
   -webkit-animation-fill-mode: forwards !important;
           animation-fill-mode: forwards !important;
+  opacity: 0;
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease; }
@@ -332,8 +333,6 @@ img.lazyload, video.lazyload {
             transform: translateY(0); } }
 
 @media screen and (max-width: 991px) {
-  .anim {
-    opacity: 1; }
   .anim-stage > * {
     opacity: 1; }
   @-webkit-keyframes line {
@@ -1995,7 +1994,12 @@ p {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
-    position: relative; }
+    position: relative;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding-bottom: 8%; }
     .size-preview__sizes .tablet .tabl-lines {
       width: 98%;
       height: auto;
@@ -2007,7 +2011,7 @@ p {
     .size-preview__sizes .tablet .table-im {
       position: absolute;
       left: 50%;
-      top: 50%;
+      top: 44%;
       width: 97%;
       overflow: hidden;
       height: 0;
@@ -2029,7 +2033,7 @@ p {
       height: auto;
       z-index: 3;
       position: absolute;
-      top: 50%;
+      top: 45%;
       left: 50%;
       -webkit-transform: translate(-50%, -51%);
           -ms-transform: translate(-50%, -51%);
@@ -2118,6 +2122,95 @@ p {
 @media screen and (max-width: 1925px) {
   .single-project__hero .right p {
     font-size: 6.6vw; } }
+
+.tablet-lines {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 40%;
+  z-index: 0; }
+  .tablet-lines::before, .tablet-lines::after {
+    width: 1px;
+    background: #4C4C4C;
+    position: absolute;
+    top: 0;
+    -webkit-transition: height 0.4s ease;
+    -o-transition: height 0.4s ease;
+    transition: height 0.4s ease;
+    display: inline-block;
+    content: '';
+    left: 10px;
+    height: 0; }
+  .tablet-lines::after {
+    left: auto;
+    right: 10px; }
+  .tablet-lines .central {
+    padding-left: 0;
+    padding-right: 0;
+    -webkit-transition: width 0.5s ease, padding-left 0.3s ease, padding-right 0.3s ease;
+    -o-transition: width 0.5s ease, padding-left 0.3s ease, padding-right 0.3s ease;
+    transition: width 0.5s ease, padding-left 0.3s ease, padding-right 0.3s ease;
+    -webkit-transition-delay: 0.8s;
+         -o-transition-delay: 0.8s;
+            transition-delay: 0.8s;
+    border-bottom: 1px solid #303030;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    width: 0;
+    -webkit-transform: translate(-50%, 0);
+        -ms-transform: translate(-50%, 0);
+            transform: translate(-50%, 0); }
+    .tablet-lines .central::after, .tablet-lines .central::before {
+      width: 13px;
+      height: 9px;
+      display: inline-block;
+      content: '';
+      background: url("../img/fr1.svg") no-repeat center/100%;
+      position: absolute;
+      bottom: 0;
+      left: 100%;
+      -webkit-transform: translate(0, 50%);
+          -ms-transform: translate(0, 50%);
+              transform: translate(0, 50%); }
+    .tablet-lines .central::before {
+      left: auto;
+      right: 100%;
+      -webkit-transform: translate(0, 50%) rotate(180deg);
+          -ms-transform: translate(0, 50%) rotate(180deg);
+              transform: translate(0, 50%) rotate(180deg); }
+    .tablet-lines .central p {
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 600;
+      color: #C4C4C4;
+      -webkit-transition: opacity 0.4s ease;
+      -o-transition: opacity 0.4s ease;
+      transition: opacity 0.4s ease;
+      -webkit-transition-delay: 1.2s;
+           -o-transition-delay: 1.2s;
+              transition-delay: 1.2s;
+      opacity: 0; }
+
+.tablet.done .tablet-lines::before, .tablet.done .tablet-lines::after {
+  height: 100%; }
+
+.tablet.done .tablet-lines .central {
+  padding-left: 10px;
+  padding-right: 10px;
+  width: calc(100% - 50px); }
+  .tablet.done .tablet-lines .central p {
+    opacity: 1; }
 
 .single-project__info {
   width: 100%;
@@ -2905,6 +2998,8 @@ p {
     width: 69vw; } }
 
 @media screen and (max-width: 922px) {
+  .tablet-lines .central p {
+    font-size: 11px; }
   .size-preview__sizes .phone .phn-i {
     border-radius: 14px; }
   .big-size-img {

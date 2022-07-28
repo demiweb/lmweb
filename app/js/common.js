@@ -683,7 +683,7 @@ function scrollAnimations() {
                 }
 
             })
-        }, {threshold: .5})
+        }, {threshold: .5});
         if (window.innerWidth > 991) {
             anim.forEach(animate => {
                 observer.observe(animate)
@@ -691,9 +691,9 @@ function scrollAnimations() {
         } else {
 
             anim.forEach(animate => {
-                if (animate.classList.contains('anim-js')) {
+
                     observer.observe(animate)
-                }
+
 
             })
         }

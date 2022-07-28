@@ -372,6 +372,8 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
+    flex-direction: column;
+    padding-bottom: 8%;
     .tabl-lines {
       width: 98%;
       height: auto;
@@ -385,7 +387,7 @@ body {
     .table-im {
       position: absolute;
       left: 50%;
-      top: 50%;
+      top: 44%;
       width: 97%;
       overflow: hidden;
       height: 0;
@@ -407,7 +409,7 @@ body {
       height: auto;
       z-index: 3;
       position: absolute;
-      top: 50%;
+      top: 45%;
       left: 50%;
       transform: translate(-50%, -51%);
       img {
@@ -498,7 +500,88 @@ body {
     }
   }
 }
+.tablet-lines {
+  position: absolute;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 40%;
+  z-index: 0;
+  &::before, &::after {
+    width: 1px;
 
+    background: #4C4C4C;
+    position: absolute;
+    top: 0;
+    transition: height 0.4s ease;
+    display: inline-block;
+    content: '';
+    left: 10px;
+    height: 0;
+  }
+  &::after {
+    left: auto;
+    right: 10px;
+  }
+  .central {
+    padding-left: 0;
+    padding-right: 0;
+    transition: width 0.5s ease, padding-left 0.3s ease, padding-right 0.3s ease;
+    transition-delay: 0.8s;
+    border-bottom: 1px solid #303030;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 12px;
+    left: 50%;
+    width: 0;
+    transform: translate(-50%, 0);
+    &::after, &::before  {
+      width: 13px;
+      height: 9px;
+      display: inline-block;
+      content: '';
+      background: url("../img/fr1.svg") no-repeat center / 100%;
+      position: absolute;
+      bottom: 0;
+      left: 100%;
+      transform: translate(0, 50%);
+    }
+    &::before {
+      left: auto;
+      right: 100%;
+      transform: translate(0, 50%) rotate(180deg);
+    }
+    p {
+      font-size: 24px;
+      line-height: 1.2;
+      font-weight: 600;
+      color: #C4C4C4;
+      transition: opacity 0.4s ease;
+      transition-delay: 1.2s;
+      opacity: 0;
+    }
+  }
+
+}
+.tablet {
+  &.done {
+    .tablet-lines {
+      &::before, &::after {
+        height: 100%;
+      }
+      .central {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: calc(100% - 50px);
+        p {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
 .single-project__info {
   width: 100%;
   display: flex;
@@ -1287,6 +1370,9 @@ main {
   }
 }
 @media screen and (max-width: 922px) {
+  .tablet-lines .central p {
+    font-size: 11px;
+  }
   .size-preview__sizes .phone .phn-i {
     border-radius: 14px;
   }
