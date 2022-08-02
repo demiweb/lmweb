@@ -7,6 +7,7 @@
   margin-top: -104px;
   overflow: hidden;
   position: relative;
+  z-index: 2;
 
   &.dev-hero__proj {
     overflow: visible;
@@ -648,6 +649,7 @@ body {
     position: relative;
     z-index: 2;
     justify-content: flex-start;
+    max-width: 1485px;
 
     position: relative;
   }

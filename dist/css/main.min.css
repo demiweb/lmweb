@@ -1602,7 +1602,8 @@ p {
           justify-content: flex-start;
   margin-top: -104px;
   overflow: hidden;
-  position: relative; }
+  position: relative;
+  z-index: 2; }
   .dev-hero.dev-hero__proj {
     overflow: visible;
     background: #000; }
@@ -2289,6 +2290,7 @@ p {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
             justify-content: flex-start;
+    max-width: 1485px;
     position: relative; }
 
 .matrix-bg {
