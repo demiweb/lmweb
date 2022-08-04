@@ -5163,8 +5163,6 @@ body.home main .footer {
   .our-projects__head {
     padding-left: 0;
     margin-bottom: 60px; }
-  .single-project:nth-child(odd) {
-    margin-left: 134px; }
   .our-projects {
     padding: 90px 0; }
   .single-project .text span {
@@ -5293,10 +5291,10 @@ body.home main .footer {
     bottom: 0; }
   .our-blog {
     padding: 40px 0; }
+  .our-projects__list {
+    gap: 60px; }
   .single-project {
     width: calc(50% - 30px); }
-    .single-project:nth-child(odd) {
-      margin-left: 60px; }
   .about-us__cont {
     margin-top: 30px; }
   .about-us__cont ul {
@@ -5479,10 +5477,10 @@ body.home main .footer {
       font-size: 12px; }
     .single-blog .text p:not(.read) {
       margin-bottom: 7px; }
+  .our-projects__list {
+    gap: 20px; }
   .single-project {
     width: calc(50% - 10px); }
-    .single-project:nth-child(odd) {
-      margin-left: 20px; }
     .single-project .card {
       margin-bottom: 6px; }
     .single-project .text span {

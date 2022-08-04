@@ -1772,7 +1772,7 @@ body.home main .footer {
   }
   .single-project {
     &:nth-child(odd) {
-      margin-left: 134px;
+      //margin-left: 134px;
     }
   }
   .our-projects {
@@ -1964,13 +1964,13 @@ body.home main .footer {
     padding: 40px 0;
   }
   .our-projects__list {
-
+    gap: 60px;
   }
   .single-project {
     width: calc(50% - 30px);
 
     &:nth-child(odd) {
-      margin-left: 60px;
+      //margin-left: 60px;
     }
   }
   .about-us__cont {
@@ -2196,11 +2196,14 @@ body.home main .footer {
       margin-bottom: 7px;
     }
   }
+  .our-projects__list {
+    gap: 20px;
+  }
   .single-project {
     width: calc(50% - 10px);
 
     &:nth-child(odd) {
-      margin-left: 20px;
+      //margin-left: 20px;
     }
 
     .card {
