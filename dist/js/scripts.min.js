@@ -154,6 +154,85 @@ function canvasStarts() {
 
 canvasStarts();
 
+//category filter
+
+let tagsCat = [...document.querySelectorAll('.dev-hero__tags a')];
+let projCat = [...document.querySelectorAll('.our-projects__list .single-project')];
+
+
+function changeActiveCat() {
+    if (tagsCat.length) {
+        tagsCat.forEach((btn, k) => {
+            if (btn.classList.contains('active')) {
+                let data = btn.dataset.cat;
+                let needProj = '';
+                if (data === 'all') {
+                    needProj = projCat;
+                } else {
+                    needProj = [...document.querySelectorAll(`.single-project.${data}`)];
+                }
+
+                needProj.forEach((blc) => {
+                    blc.style.display = 'flex';
+                    setTimeout(() => {
+                        blc.style.opacity = '1';
+                    }, 200);
+                })
+            }
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                let data = btn.dataset.cat;
+
+                let needProj = [...document.querySelectorAll(`.single-project.${data}`)];
+                if (btn.classList.contains('active')) {
+
+                } else {
+                    if (data === 'all') {
+                        needProj = projCat;
+                        tagsCat.forEach((btn2) => {
+                            btn2.classList.remove('active');
+                        });
+                        btn.classList.add('active');
+                        needProj.forEach((blc) => {
+                            blc.style.display = 'flex';
+                            setTimeout(() => {
+                                blc.style.opacity = '1';
+                            }, 300);
+                        })
+                    } else {
+                        tagsCat.forEach((btn2) => {
+                            btn2.classList.remove('active');
+                        });
+                        btn.classList.add('active');
+                        projCat.forEach((blc2) => {
+                            blc2.style.opacity = '0';
+                            setTimeout(() => {
+                                blc2.style.display = 'none';
+                            }, 300);
+                        });
+                        setTimeout(() => {
+                            needProj.forEach((blc) => {
+                                blc.style.display = 'flex';
+                                setTimeout(() => {
+                                    blc.style.opacity = '1';
+                                }, 300);
+                            })
+                        }, 300);
+                    }
+
+
+                }
+
+
+
+            })
+        })
+    }
+}
+
+changeActiveCat();
+//category filter
+
 
 //change image
 

@@ -1293,9 +1293,18 @@ body.home main .footer {
   flex-wrap: wrap;
   margin-left: auto;
   margin-right: auto;
-
+  gap: 50px 134px;
+  &.category-projects {
+    .single-project {
+      opacity: 0;
+      display: none;
+      transition: all 0.3s ease;
+    }
+  }
 }
-
+.btn-go-dwn {
+  z-index: 2;
+}
 .parall-cont {
   width: 100%;
   //background: #000;
@@ -1309,10 +1318,10 @@ body.home main .footer {
   justify-content: flex-start;
   width: calc(50% - 67px);
   flex-direction: column;
-  margin-bottom: 50px;
+  //margin-bottom: 50px;
 
   &:nth-child(odd) {
-    margin-left: 134px;
+    //margin-left: 134px;
     .card {
       .img {
         img {
