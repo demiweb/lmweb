@@ -1646,5 +1646,26 @@ marqqueFnc();
 //marquee
 
 
+let startReview = [...document.querySelectorAll('.start-review')];
+let reviewStep = [...document.querySelectorAll('.review-step')];
+
+function starProcessReview() {
+    if (startReview.length) {
+        startReview.forEach((btn) => {
+            let step = btn.dataset.step;
+            let next = btn.dataset.next;
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                e.preventDefault();
+                document.querySelector(`.review-step--${step}`).classList.add('hide');
+
+
+            })
+        })
+    }
+}
+
+starProcessReview();
+
 
 

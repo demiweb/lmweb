@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./css/main.min.css">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
+
+</head>
+<body class="" data-barba="wrapper">
+//= details/header.html
+
+
+<main>
+
+    <div class="global-wrapper" data-barba="container" data-barba-namespace="about">
+        <section class="dev-hero">
+
+            <div class="dev-hero__top dev-hero__top--nobg">
+                <div class="about-bg">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+
+                </div>
+                <div class="container">
+                    <div class="single-project__hero counting-delay review-step review-step--1">
+                        <div class="left anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade-up">
+
+                            <span class="title anim-t white">
+
+                                 <span><span>לקוחות</span><span>יקרים,</span></span>
+                            </span>
+                            <p>לקוחות יקרים, כמנהגינו אנחנו מבצעים סקירת לקוחות בסוף פרוייקט, על מנת לשמוע את דעתכם כדי שנוכל ללמוד ולשפר את השירות והעבודה שלנו. הסקר אורך כ- 5 דקות בלבד, כדי להתחיל לחץ על הקישור</p>
+                            <button class="btn btn--green start-review" data-step="1" data-next="2">
+                                <span>כניסה למשוב</span>
+                            </button>
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+
+    </div>
+
+    <div class="back-cursor">
+
+    </div>
+    <script>
+        //cursor2
+        // dots is an array of Dot objects,
+        // mouse is an object used to track the X and Y position
+        // of the mouse, set with a mousemove event listener below
+        var dots = [],
+            mouse = {
+                x: 0,
+                y: 0
+            };
+
+        // The Dot object used to scaffold the dots
+        var Dot = function () {
+            this.x = 0;
+            this.y = 0;
+            this.node = (function () {
+                var n = document.createElement("div");
+                n.className = "";
+                document.body.querySelector('.back-cursor').appendChild(n);
+                return n;
+            }());
+        };
+        // The Dot.prototype.draw() method sets the position of
+        // the object's <div> node
+        Dot.prototype.draw = function () {
+            this.node.style.left = this.x + "px";
+            this.node.style.top = this.y + "px";
+        };
+
+        // Creates the Dot objects, populates the dots array
+        for (let i = 0; i < 9; i++) {
+            let d = new Dot();
+            dots.push(d);
+        }
+        var spdDr = 0.82;
+
+        // This is the screen redraw function
+        function draw() {
+            // Make sure the mouse position is set everytime
+            // draw() is called.
+            let x = mouse.x,
+                y = mouse.y;
+
+            // This loop is where all the 90s magic happens
+            dots.forEach(function (dot, index, dots) {
+                let nextDot = dots[index + 1] || dots[0];
+
+                dot.x = x;
+                dot.y = y;
+                dot.draw();
+                x += (nextDot.x - dot.x) * spdDr;
+                y += (nextDot.y - dot.y) * spdDr;
+
+            });
+        }
+
+        addEventListener("mousemove", function (event) {
+            //event.preventDefault();
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        // animate() calls draw() then recursively calls itself
+        // everytime the screen repaints via requestAnimationFrame().
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        // And get it started by calling animate().
+        animate();
+
+
+        //cursor2
+    </script>
+</main>
+
+<ul class="transition">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+//= details/footer.html
+<span class="cursor-block" id="cursor-id">
+    <span class="cursor-text"></span>
+</span>
+
+<div class="video-modal">
+    <div class="close-video">
+        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect class="gr xm" width="5" height="5" rx="1"/>
+            <rect y="9" width="5" height="5" rx="1"/>
+            <rect class="gr xm" y="18" width="5" height="5" rx="1"/>
+            <rect x="9" width="5" height="5" rx="1"/>
+            <rect class="gr xm" x="9" y="9" width="5" height="5" rx="1"/>
+            <rect x="9" y="18" width="5" height="5" rx="1"/>
+            <rect class="xm" x="18" width="5" height="5" rx="1"/>
+            <rect x="18" y="9" width="5" height="5" rx="1"/>
+            <rect class="xm" x="18" y="18" width="5" height="5" rx="1"/>
+        </svg>
+    </div>
+    <video src="" controls muted="" playsinline="" type="video/mp4"
+           poster=""
+           data-loaded="true"></video>
+</div>
+
+
+//= details/scripts.html
+
+
+</body>
+</html>

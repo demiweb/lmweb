@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="./css/main.min.css">
+    <link rel="stylesheet" href="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/style.css">
+    <script src="https://developer.api.autodesk.com/modelderivative/v2/viewers/7.*/viewer3D.js"></script>
+
+</head>
+<body class="" data-barba="wrapper">
+<header class="header ">
+    <div class="container">
+        <div class="header-container">
+            <div class="burger " style="--v: 1; --m: 3; --n: 5;">
+                <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect class="gr xm" width="5" height="5" rx="1"/>
+                    <rect y="9" width="5" height="5" rx="1"/>
+                    <rect class="gr xm" y="18" width="5" height="5" rx="1"/>
+                    <rect x="9" width="5" height="5" rx="1"/>
+                    <rect class="gr xm" x="9" y="9" width="5" height="5" rx="1"/>
+                    <rect x="9" y="18" width="5" height="5" rx="1"/>
+                    <rect class="xm" x="18" width="5" height="5" rx="1"/>
+                    <rect x="18" y="9" width="5" height="5" rx="1"/>
+                    <rect class="xm" x="18" y="18" width="5" height="5" rx="1"/>
+                </svg>
+            </div>
+            <div class="header-menu">
+                <ul>
+                    <li class="current-menu-item"><a href="./about.html">מיקור חוץ</a></li>
+                    <li><a href="./about.html">עמוד הבית</a></li>
+                    <li><a href="">אודות החברה</a></li>
+                    <li><a href="">שרותינו</a></li>
+                    <li><a href="">פרויקטים</a></li>
+                    <li><a href="">בלוג</a></li>
+                    <li><a href="">צור קשר</a></li>
+                </ul>
+                <span class="line-menu" style="--r: 0; --w: 0;">
+
+                </span>
+            </div>
+            <div class="header-social">
+                <ul>
+                    <li><a href="">facebook</a></li>
+                    <li><a href="">instagram</a></li>
+                </ul>
+            </div>
+            <div class="logo">
+                <a href="">
+                    <img src="./img/logo.svg" alt="">
+                </a>
+            </div>
+
+            <div class="header-big-menu">
+                <div class="menu-container">
+                    <div class="column">
+                        <span class="header-title">
+                               מחפשים חבילת  מושלמת
+ WEB ללקוחות שלכם?                         </span>
+                        <p class="header-sub-title">אנחנו בונים אתרים משלב החזון ועד לפיניש האחרון</p>
+                        <a href="#" class="btn btn--black" style="--x: 0; --y: 0;">
+                            <span>מיקור חוץ</span></a>
+                    </div>
+                    <div class="column">
+                        <div class="column-menu">
+                            <span>שרותינו  </span>
+                            <ul>
+                                <li><a href="">איפיון</a></li>
+                                <li><a href="">עיצוב</a></li>
+                                <li><a href="">פיתוח</a></li>
+                                <li><a href="">מיקור חוץ</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="column-menu">
+                            <span>דפים</span>
+                            <ul>
+                                <li><a href="">פרויקטים</a></li>
+                                <li><a href="">עמוד הבית</a></li>
+                                <li><a href="">אודות החברה</a></li>
+                                <li><a href="">בלוג</a></li>
+                                <li><a href="">צור קשר</a></li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="column">
+                        <div class="column-menu">
+                            <span>אנשי קשר</span>
+                            <div class="column-cont">
+                                <span>טלפון</span>
+                                <a href="">050-5665590</a>
+                            </div>
+                            <div class="column-cont">
+                                <span>מייל</span>
+                                <a href="">mr.rempel@gmail.com</a>
+                                <a href="">marat.lmstudio@gmail.com</a>
+                            </div>
+                            <div class="column-cont">
+                                <span>שעות פעילות</span>
+                                <p>א-ה 9:00 עד 18:00 <br>
+                                    ו 9:00 עד 13:00 <br>
+                                    שבת סגור</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="head-soc">
+                        <ul>
+                            <li><a href=""><img src="./img/lin-ic-b.svg" alt=""></a></li>
+                            <li><a href=""><img src="./img/fb-ic-b.svg" alt=""></a></li>
+                            <li><a href=""><img src="./img/ins-ic-b.svg" alt=""></a></li>
+
+                        </ul>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</header>
+<div class="backdrop ">
+
+</div>
+
+
+<main>
+
+    <div class="global-wrapper" data-barba="container" data-barba-namespace="about">
+        <section class="dev-hero">
+
+            <div class="dev-hero__top dev-hero__top--nobg">
+                <div class="about-bg">
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+                    <div class="col"></div>
+
+                </div>
+                <div class="container">
+                    <div class="single-project__hero counting-delay">
+                        <div class="left anim" data-anim-delay="0" data-anim-duration="760"
+                             data-anim="fade-up">
+                            <div class="bg-svg">
+                                <svg width="606" height="339" viewBox="-12 -12 630 368" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+
+                                    <defs>
+                                        <pattern id="image" x="0" y="0" patternUnits="userSpaceOnUse" height="10"
+                                                 width="10">
+                                            <image x="0" y="0" width="14" height="14"
+                                                   xlink:href="./img/bgs-gr.svg"></image>
+                                        </pattern>
+                                    </defs>
+                                    <path id="motion"
+                                          d="M602.412 24.5552C608.13 36.3896 605.388 51.7401 595.293 69.4718C585.207 87.187 567.843 107.165 544.552 128.159C497.975 170.143 427.784 216.115 345.019 256.109C262.253 296.104 182.618 322.531 120.781 332.935C89.8589 338.137 63.4165 339.328 43.2693 336.222C23.1035 333.113 9.37241 325.723 3.65375 313.889C-2.06491 302.054 0.677362 286.704 10.7726 268.972C20.8585 251.257 38.2228 231.28 61.5138 210.285C108.091 168.301 178.281 122.329 261.047 82.3346C343.812 42.3405 423.447 15.9134 485.284 5.50936C516.206 0.306756 542.649 -0.884124 562.796 2.22182C582.962 5.33064 596.693 12.7208 602.412 24.5552Z"
+                                          stroke="#9C9C9C"/>
+                                    <circle cx="0" cy="0" r="6" fill="#00FFCC">
+                                        <animateMotion dur="12s" repeatCount="indefinite" rotate="reverse">
+                                            <mpath xlink:href="#motion"></mpath>
+                                        </animateMotion>
+                                    </circle>
+
+
+                                </svg>
+                            </div>
+                            <span class="title anim-t white">
+
+                                 <span><span>כרטיסיית</span></span><br>
+                                <span><span>לקוח</span></span>
+                            </span>
+                        </div>
+
+
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <section class="marquee-block anim parall-t" data-anim-delay="0" data-anim-duration="760"
+                 data-anim="fade">
+            <div class="marquee-cont" id="marq2">
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+                <div><p>lmweb solutions</p></div>
+
+            </div>
+        </section>
+
+        <section class="client-block">
+            <div class="container-m">
+                <div class="client-block__cont">
+                    <div class="client-block__top">
+                        <img src="./img/new-client_img.svg" alt="">
+                    </div>
+                    <div class="client-block__bot">
+                        <div class="clients-block__form">
+                            <div class="client-form">
+                                <form action="">
+                                    <p>
+                                        <span>
+                                            <label for="">שם הלקוח עבור החשבונית</label>
+                                            <input type="text">
+                                        </span>
+                                        <span>
+                                            <label for="">אימייל לקבל חשבונית</label>
+                                            <input type="text">
+                                        </span>
+                                        <span>
+                                            <label for="">אימייל נוסף לקבל חשבונית</label>
+                                            <input type="text">
+                                        </span>
+                                        <span>
+                                            <label for="">טלפון</label>
+                                            <input type="text">
+                                        </span>
+                                        <span>
+                                            <label for="">מס' עוסק / ת.ז. / ח.פ</label>
+                                            <input type="text">
+                                        </span>
+                                        <span>
+                                            <label for="">כתובת כולל מיקוד</label>
+                                            <textarea name="" id="" ></textarea>
+                                        </span>
+                                        <span>
+                                            <label for="">מיקוד</label>
+                                            <input type="text">
+                                        </span>
+                                        <button class="btn btn--black">
+                                            <span>שלח</span>
+                                        </button>
+                                    </p>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="back-cursor">
+
+    </div>
+    <script>
+        //cursor2
+        // dots is an array of Dot objects,
+        // mouse is an object used to track the X and Y position
+        // of the mouse, set with a mousemove event listener below
+        var dots = [],
+            mouse = {
+                x: 0,
+                y: 0
+            };
+
+        // The Dot object used to scaffold the dots
+        var Dot = function () {
+            this.x = 0;
+            this.y = 0;
+            this.node = (function () {
+                var n = document.createElement("div");
+                n.className = "";
+                document.body.querySelector('.back-cursor').appendChild(n);
+                return n;
+            }());
+        };
+        // The Dot.prototype.draw() method sets the position of
+        // the object's <div> node
+        Dot.prototype.draw = function () {
+            this.node.style.left = this.x + "px";
+            this.node.style.top = this.y + "px";
+        };
+
+        // Creates the Dot objects, populates the dots array
+        for (let i = 0; i < 9; i++) {
+            let d = new Dot();
+            dots.push(d);
+        }
+        var spdDr = 0.82;
+
+        // This is the screen redraw function
+        function draw() {
+            // Make sure the mouse position is set everytime
+            // draw() is called.
+            let x = mouse.x,
+                y = mouse.y;
+
+            // This loop is where all the 90s magic happens
+            dots.forEach(function (dot, index, dots) {
+                let nextDot = dots[index + 1] || dots[0];
+
+                dot.x = x;
+                dot.y = y;
+                dot.draw();
+                x += (nextDot.x - dot.x) * spdDr;
+                y += (nextDot.y - dot.y) * spdDr;
+
+            });
+        }
+
+        addEventListener("mousemove", function (event) {
+            //event.preventDefault();
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        });
+
+        // animate() calls draw() then recursively calls itself
+        // everytime the screen repaints via requestAnimationFrame().
+        function animate() {
+            draw();
+            requestAnimationFrame(animate);
+        }
+
+        // And get it started by calling animate().
+        animate();
+
+
+        //cursor2
+    </script>
+</main>
+
+<ul class="transition">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-container">
+            <div class="footer-right">
+                <div class="column-menu">
+                    <div class="column-cont">
+                        <span>טלפון</span>
+                        <a href="">050-5665590</a>
+                    </div>
+                    <div class="column-cont">
+                        <span>מייל</span>
+                        <a href="">mr.rempel@gmail.com</a>
+                        <a href="">marat.lmstudio@gmail.com</a>
+                    </div>
+                    <div class="column-cont">
+                        <span>שעות פעילות</span>
+                        <p>א-ה 9:00 עד 18:00 <br>
+                            ו 9:00 עד 13:00 <br>
+                            שבת סגור</p>
+                    </div>
+                </div>
+                <div class="head-soc">
+                    <ul>
+                        <li><a href=""><img src="./img/lin-ic-b.svg" alt=""></a></li>
+                        <li><a href=""><img src="./img/fb-ic-b.svg" alt=""></a></li>
+                        <li><a href=""><img src="./img/ins-ic-b.svg" alt=""></a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-left">
+                <div class="footer-info">
+                    <div class="logo-mob">
+                        <a href="" class="img"><img src="./img/logo.svg" alt=""></a>
+                    </div>
+                    <span>דברו<br>
+איתנו
+</span>
+                    <p>בין אם אתם רוצים לבנות אתר מאפס,
+                        ובין אם יש לכם עיצוב/תוכן וחסרה הטכנולוגיה,
+                        אנחנו כאן עבורכם, כדי ליצור את מוצר ה-WEB המושלם. השאירו פרטים ונדבר בקרוב :)</p>
+                </div>
+                <div class="footer-control">
+                    <div class="footer-form">
+                        <div class="form">
+                            <form action="">
+                                <label for="">טלפון
+                                    <input type="text">
+                                </label>
+                                <label for="">מייל
+                                    <input type="text">
+                                </label>
+                                <label for="">טלפון
+                                    <input type="text">
+                                </label>
+                                <label for="">נושא
+                                    <input type="text">
+                                </label>
+                                <button class="btn btn--black">
+                                    <span>שלח</span>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="footer-logo">
+                        <a href=""><img src="./img/logo-w.svg" alt=""></a>
+                    </div>
+                </div>
+                <p class="copyr">© כל הזכויות שמורות LM Web Solutions 2020</p>
+            </div>
+
+        </div>
+    </div>
+</footer>
+<span class="cursor-block" id="cursor-id">
+    <span class="cursor-text"></span>
+</span>
+
+<div class="video-modal">
+    <div class="close-video">
+        <svg width="23" height="23" viewBox="0 0 23 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect class="gr xm" width="5" height="5" rx="1"/>
+            <rect y="9" width="5" height="5" rx="1"/>
+            <rect class="gr xm" y="18" width="5" height="5" rx="1"/>
+            <rect x="9" width="5" height="5" rx="1"/>
+            <rect class="gr xm" x="9" y="9" width="5" height="5" rx="1"/>
+            <rect x="9" y="18" width="5" height="5" rx="1"/>
+            <rect class="xm" x="18" width="5" height="5" rx="1"/>
+            <rect x="18" y="9" width="5" height="5" rx="1"/>
+            <rect class="xm" x="18" y="18" width="5" height="5" rx="1"/>
+        </svg>
+    </div>
+    <video src="" controls muted="" playsinline="" type="video/mp4"
+           poster=""
+           data-loaded="true"></video>
+</div>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+
+<script
+        src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.css"
+/>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+<!--<script src="js/jquery.nice-select.min.js"></script>-->
+<script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+<script src="./libs/jquery.raty.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css"/>
+
+<script src="https://unpkg.com/animatorjs@latest/dist/animator.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/dixonandmoe/rellax@master/rellax.min.js"></script>
+
+<script type="text/javascript" src="./libs/paroller.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+
+<script src="./libs/marquee.js"></script>
+<script src="./libs/tweenmax.min.js"></script>
+<script src="./libs/scrollmagic.js"></script>
+<script src="./libs/anim.gsap.js"></script>
+<script src="./libs/add.indicators.js"></script>
+<script src="./libs/frameByFrame.js"></script>
+
+<script src="https://unpkg.com/@barba/core"></script>
+
+<!-- jsdelivr -->
+<script src="https://cdn.jsdelivr.net/npm/@barba/core"></script>
+
+<script src="https://unpkg.com/gsap@latest/dist/gsap.min.js"></script>
+<script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.3/smooth-scrollbar.js"></script>
+
+<script type="text/javascript" class="main-script" src="./js/scripts.min.js"></script>
+<script type="module" class="" src="./libs/modulegrid.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
+
+<!-- init barba with a simple opacity transition -->
+<script type="text/javascript">
+
+    function goFooterSlide() {
+        if (window.innerWidth > 922) {
+            gsap.set('.footer', { yPercent: -50 })
+
+            const uncover = gsap.timeline({ paused:true })
+
+            uncover
+                .to('.footer', { yPercent: 0, ease: 'none' })
+            ;
+
+            ScrollTrigger.create({
+                trigger: 'main',
+                start: 'bottom bottom',
+                end: '+=75%',
+                animation: uncover,
+                scrub: true,
+                markers: false,
+            })
+        }
+    }
+    goFooterSlide();
+
+
+    function reinitScripts() {
+        const bottomDOM = document.getElementsByTagName("body")[0]
+        const newScript = document.createElement("script")
+        const oldScript = document.querySelector(".main-script")
+        newScript.src = "./js/scripts.min.js"
+        newScript.className = "main-script"
+        oldScript.remove()
+        bottomDOM.appendChild(newScript)
+    }
+
+    function pageTransition() {
+        var tl = gsap.timeline();
+        tl.to('ul.transition li', {duration: .5, translateY: 0, transformOrigin: "bottom left", stagger: .2})
+        tl.to('ul.transition li', {
+            duration: .5,
+            translateY: "-100%",
+            transformOrigin: "bottom left",
+            stagger: .1,
+            delay: .1
+        })
+    }
+
+
+    function delay(n) {
+        n = n || 2000;
+        return new Promise(done => {
+            setTimeout(() => {
+                done();
+            }, n)
+        })
+    }
+
+    // barba.init({
+    //     sync: true,
+    //     transitions: [{
+    //         async leave(data) {
+    //             const done = this.async();
+    //             pageTransition();
+    //             await delay(1500);
+    //             done();
+    //         },
+    //         async enter(data) {
+    //
+    //         },
+    //         async once(data) {
+    //
+    //         }
+    //     }],
+    //
+    // });
+    // barba.hooks.beforeEnter((data) => {
+    //     // this hook will be called during every transitions
+    //     console.clear();
+    //     reinitScripts();
+    // });
+</script>
+
+
+</body>
+</html>

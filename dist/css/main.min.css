@@ -1676,6 +1676,8 @@ p {
       color: #FFFFFF;
       max-width: 416px;
       margin-top: 40px; }
+    .single-project__hero .left .btn {
+      margin-top: 40px; }
 
 .project-rules {
   width: 100%;
@@ -2894,6 +2896,154 @@ p {
       width: 100%;
       height: auto; }
 
+.client-block {
+  width: 100%;
+  margin-bottom: 170px;
+  position: relative;
+  z-index: 3;
+  margin-top: -50vh; }
+
+.client-block__cont {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  padding-left: 30px;
+  padding-right: 30px; }
+
+.client-block__top {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-bottom: -20px;
+  position: relative;
+  z-index: 2; }
+  .client-block__top img, .client-block__top svg {
+    width: auto;
+    max-width: 90%;
+    height: auto; }
+
+.client-block__bot {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  background: #fff;
+  padding: 75px 75px 80px; }
+
+.clients-block__form {
+  width: 100%;
+  background: #EEFFFC;
+  padding: 72px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box; }
+
+.client-form {
+  width: 100%;
+  padding: 23px 23px 0 60px;
+  border: 1px solid #000000; }
+  .client-form form {
+    width: 100%; }
+    .client-form form .btn {
+      margin-top: 70px;
+      margin-right: auto; }
+    .client-form form > p {
+      width: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column;
+      -webkit-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start;
+      -webkit-box-pack: start;
+          -ms-flex-pack: start;
+              justify-content: flex-start; }
+      .client-form form > p > span {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: start;
+            -ms-flex-align: start;
+                align-items: flex-start;
+        margin-bottom: 20px; }
+        .client-form form > p > span:last-child {
+          margin-bottom: 0; }
+        .client-form form > p > span label {
+          font-style: normal;
+          font-weight: 700;
+          font-size: 26px;
+          line-height: 31px;
+          text-align: right;
+          text-transform: uppercase;
+          color: #000000;
+          margin-left: 49px;
+          display: inline-block;
+          min-width: 310px; }
+        .client-form form > p > span input {
+          font-weight: 500;
+          background: rgba(255, 255, 255, 0);
+          font-size: 22px;
+          line-height: 31px;
+          text-align: right;
+          text-transform: uppercase;
+          color: #000000;
+          -webkit-box-flex: 1;
+              -ms-flex-positive: 1;
+                  flex-grow: 1;
+          padding: 4px 0;
+          border: 1px solid rgba(255, 255, 255, 0);
+          border-bottom: 1px solid #000000; }
+        .client-form form > p > span textarea {
+          resize: none;
+          min-height: 105px;
+          font-weight: 500;
+          background: rgba(255, 255, 255, 0);
+          font-size: 22px;
+          line-height: 31px;
+          text-align: right;
+          text-transform: uppercase;
+          color: #000000;
+          -webkit-box-flex: 1;
+              -ms-flex-positive: 1;
+                  flex-grow: 1;
+          padding: 4px 0;
+          border: 1px solid rgba(255, 255, 255, 0);
+          border-bottom: 1px solid #000000; }
+
 @media screen and (max-width: 1400px) {
   .dev-tools__cont > p {
     font-size: 27px;
@@ -2914,6 +3064,12 @@ p {
     line-height: 1.1; } }
 
 @media screen and (max-width: 1300px) {
+  .client-block__bot {
+    padding: 50px 40px; }
+  .clients-block__form {
+    padding: 40px; }
+  .client-form {
+    padding: 23px 23px 0 23px; }
   .size-multi-phones {
     margin-bottom: 60px; }
   .big-size-img {
@@ -2970,6 +3126,15 @@ p {
     padding: 120px 0 0; } }
 
 @media screen and (max-width: 1190px) {
+  .client-form form > p > span label {
+    font-size: 20px;
+    line-height: 1.1;
+    min-width: 270px; }
+  .client-form form > p > span input {
+    font-size: 18px;
+    line-height: 1.1; }
+  .client-form form > p > span textarea {
+    font-size: 18px; }
   .conts-notes img {
     width: 65vw; }
   .conts-notes {
@@ -3000,6 +3165,8 @@ p {
     gap: 3%; } }
 
 @media screen and (max-width: 1050px) {
+  .client-block {
+    margin-bottom: 90px; }
   .project-rules__head .bot .text {
     max-width: 360px;
     margin-left: 3%; }
@@ -3015,7 +3182,41 @@ p {
   .conts-notes img {
     width: 69vw; } }
 
+.dev-hero__top.dev-hero__top--nobg {
+  background: rgba(255, 255, 255, 0); }
+  .dev-hero__top.dev-hero__top--nobg .single-project__hero p {
+    max-width: 563px; }
+
+.review-step {
+  -webkit-transition: opacity 0.5s ease-in-out, visibility 0.5s ease;
+  -o-transition: opacity 0.5s ease-in-out, visibility 0.5s ease;
+  transition: opacity 0.5s ease-in-out, visibility 0.5s ease;
+  visibility: visible;
+  pointer-events: auto; }
+  .review-step.hide {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    -webkit-transition: opacity 0.5s ease-in-out, visibility 0.5s ease;
+    -o-transition: opacity 0.5s ease-in-out, visibility 0.5s ease;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease; }
+
 @media screen and (max-width: 922px) {
+  .client-form form .btn {
+    margin-top: 30px;
+    margin-right: auto; }
+  .client-block__bot {
+    padding: 35px 15px; }
+  .client-form form > p > span label {
+    font-size: 18px;
+    line-height: 1;
+    margin-left: 20px;
+    min-width: 220px; }
+  .clients-block__form {
+    padding: 25px; }
+  .client-block__cont {
+    padding-left: 0;
+    padding-right: 0; }
   .tablet-lines .central p {
     font-size: 11px; }
   .size-preview__sizes .phone .phn-i {
@@ -3111,6 +3312,20 @@ p {
     line-height: 1.1; } }
 
 @media screen and (max-width: 700px) {
+  .client-form form > p > span {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    margin-bottom: 22px; }
+    .client-form form > p > span input, .client-form form > p > span textarea {
+      width: 100%; }
   .project-rules__head {
     padding-bottom: 50px; }
   .project-rules__head .bot {
@@ -3156,6 +3371,12 @@ p {
       max-width: 100%; } }
 
 @media screen and (max-width: 600px) {
+  .client-block {
+    margin-bottom: 50px; }
+  .client-form form .btn {
+    width: 100%; }
+  .client-block {
+    margin-top: -14vh; }
   .single-project:nth-child(odd) .card .img img {
     margin-top: -26% !important; }
   .size-multi-phones {
