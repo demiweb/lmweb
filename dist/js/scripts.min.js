@@ -224,7 +224,6 @@ function changeActiveCat() {
                 }
 
 
-
             })
         })
     }
@@ -243,9 +242,8 @@ let noteBg = document.querySelector('.conts-notes');
 function showNoteHide() {
 
 }
+
 //scroll notebook
-
-
 
 
 //animations all
@@ -454,24 +452,27 @@ function ifGetRotatingImage() {
 const cardTool = [...document.querySelectorAll(".dev-tool")];
 const motionMatchMedia = window.matchMedia("(prefers-reduced-motion)");
 const THRESHOLD = 23;
+
 function goHoverCardTool() {
     if (cardTool.length) {
         cardTool.forEach((btn) => {
             if (!motionMatchMedia.matches) {
-               btn.addEventListener("mousemove", handleHover);
+                btn.addEventListener("mousemove", handleHover);
                 btn.addEventListener("mouseleave", resetStyles);
             }
         })
     }
 }
+
 goHoverCardTool()
+
 /*
  * Read the blog post here:
  * https://letsbuildui.dev/articles/a-3d-hover-effect-using-css-transforms
  */
 function handleHover(e, btn) {
-    const { clientX, clientY, currentTarget } = e;
-    const { clientWidth, clientHeight, offsetLeft, offsetTop } = currentTarget;
+    const {clientX, clientY, currentTarget} = e;
+    const {clientWidth, clientHeight, offsetLeft, offsetTop} = currentTarget;
 
     const horizontal = (clientX - offsetLeft) / clientWidth;
     const vertical = (clientY - offsetTop) / clientHeight;
@@ -484,7 +485,6 @@ function handleHover(e, btn) {
 function resetStyles(e, btn) {
     e.target.closest('.dev-tool').style.transform = `perspective(${e.currentTarget.clientWidth}px) rotateX(0deg) rotateY(0deg)`;
 }
-
 
 
 //dev-tool
@@ -771,7 +771,7 @@ function scrollAnimations() {
 
             anim.forEach(animate => {
 
-                    observer.observe(animate)
+                observer.observe(animate)
 
 
             })
@@ -780,6 +780,43 @@ function scrollAnimations() {
 }
 
 scrollAnimations();
+
+var reviewBg = document.querySelectorAll('.review-bg');
+
+function scrollRevBg() {
+    if (reviewBg.length) {
+        var observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                var el = entry.target;
+                if (entry.isIntersecting) {
+
+
+                    [...el.querySelectorAll('path')].forEach((btn) => {
+                        btn.classList.add('done');
+                    });
+                    el.classList.add('done');
+                    observer.unobserve(entry.target);
+                }
+
+            })
+        }, {threshold: .5});
+        if (window.innerWidth > 991) {
+            reviewBg.forEach(animate => {
+                observer.observe(animate)
+            })
+        } else {
+
+            reviewBg.forEach(animate => {
+
+                observer.observe(animate)
+
+
+            })
+        }
+    }
+}
+
+scrollRevBg();
 
 var bgHides = document.querySelectorAll('.bg-hides')
 
@@ -839,7 +876,7 @@ function ourSecScroll() {
                         ln.style.height = `${part}%`;
                     }, k * 40)
 
-                })
+                });
 
                 dp.style.setProperty('--wid', '100%');
             } else {
@@ -848,7 +885,7 @@ function ourSecScroll() {
                     setTimeout(() => {
                         ln.style.height = `${part}%`;
                     }, k * 40)
-                })
+                });
 
                 dp.style.setProperty('--wid', '0');
             }
@@ -1011,11 +1048,12 @@ scrollProf();
 
 //smooth try
 
-$(".btn-go-dwn").click(function() {
+$(".btn-go-dwn").click(function () {
     $([document.documentElement, document.body]).animate({
         scrollTop: $(".dev-hero__bot").offset().top
     }, 500);
 });
+
 function checkMatrixCanvas() {
     if ([...document.querySelectorAll('.matrix-canvas')].length) {
         let canvasMatrix = document.querySelector('.matrix-canvas'),
@@ -1056,7 +1094,6 @@ function checkMatrixCanvas() {
         }
 
         setInterval(draws2, 37);
-
 
 
 //canvas matrix
@@ -1283,7 +1320,7 @@ function cardsMovement() {
             let topTop = btn.getBoundingClientRect().top - window.innerHeight;
             let botTop = btn.getBoundingClientRect().bottom;
             // console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
-            if (topTop <= 0 && botTop  >= 0) {
+            if (topTop <= 0 && botTop >= 0) {
                 let trans = botTop / 11;
                 if ((k + 1) % 2 === 0) {
 
@@ -1323,7 +1360,7 @@ function parallsRoll() {
             let topTop = btn.getBoundingClientRect().top - window.innerHeight;
             let botTop = btn.getBoundingClientRect().bottom;
             // console.log(topTop + ' bot = ' + botTop + ' height ' + window.innerHeight)
-            if (topTop <= 0 && botTop  >= 0) {
+            if (topTop <= 0 && botTop >= 0) {
                 let trans = botTop / 11;
                 if ((k + 1) % 2 === 0) {
 
@@ -1354,6 +1391,7 @@ function parallsRoll() {
         })
     }
 }
+
 parallsRoll();
 cardsMovement();
 window.addEventListener('scroll', () => {
@@ -1425,6 +1463,7 @@ function burgerControl() {
 }
 
 burgerControl();
+
 //change colored sqr
 function randomNumber2(min, max) {
     min = Math.ceil(min);
@@ -1445,7 +1484,9 @@ function changeColored2(rec) {
         }
     })
 }
+
 let sqrBurg = [...document.querySelectorAll('.dev-hero__sqr')]
+
 function burgerControl2() {
     if (sqrBurg.length) {
         sqrBurg.forEach((btn) => {
@@ -1646,26 +1687,103 @@ marqqueFnc();
 //marquee
 
 
-let startReview = [...document.querySelectorAll('.start-review')];
-let reviewStep = [...document.querySelectorAll('.review-step')];
+let startReview = [...document.querySelectorAll('.single-quiz')];
+let backQuiz = [...document.querySelectorAll('.get-back-quiz')];
+let reviewSteps = [...document.querySelectorAll('.review-step')];
+let overQuiz = [...document.querySelectorAll('.btn--over-quiz')];
+let reviewLine = [...document.querySelectorAll('.single-quiz-line')];
 
 function starProcessReview() {
     if (startReview.length) {
         startReview.forEach((btn) => {
-            let step = btn.dataset.step;
-            let next = btn.dataset.next;
+            let step = btn.closest('.review-step').dataset.step;
+            let next = btn.closest('.review-step').dataset.next;
+
+            btn.addEventListener('click', (e) => {
+                if (next === 'end') {
+                    let fromL = step - 1;
+                    reviewLine[0].closest('.quiz-line').classList.add('done');
+                    reviewLine[fromL].classList.add('done');
+                    reviewLine[fromL].classList.remove('visible');
+
+                } else {
+                    let fromL = step - 1;
+                    reviewLine[fromL].classList.add('done');
+                    reviewLine[step].classList.add('visible');
+                    reviewLine[fromL].classList.remove('visible');
+                }
+                // e.stopPropagation();
+                // e.preventDefault();
+
+
+                document.querySelector(`.review-step--${step}`).classList.remove('visible');
+                document.querySelector(`.review-step--${next}`).classList.add('visible');
+
+
+            })
+        });
+        overQuiz.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
                 e.preventDefault();
-                document.querySelector(`.review-step--${step}`).classList.add('hide');
+                btn.closest('.quiz-form').classList.add('hide');
+                document.querySelector('.review-thanks').classList.add('visible');
+            })
+        });
 
+        backQuiz.forEach((back) => {
+            back.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                let step = back.closest('.review-step').dataset.step;
+                let prev = back.closest('.review-step').dataset.prev;
+                reviewLine[0].closest('.quiz-line').classList.remove('done');
+                reviewLine[prev - 1].classList.add('visible');
+                document.querySelector(`.review-step--${step}`).classList.remove('visible');
+                document.querySelector(`.review-step--${prev}`).classList.add('visible');
 
+            })
+        });
+        reviewLine.forEach((btn2, k) => {
+            btn2.addEventListener('click', () => {
+                if (btn2.classList.contains('done')) {
+                    reviewLine.forEach((btn3) => {
+                        btn3.classList.remove('visible');
+                    });
+                    reviewSteps.forEach((btn4) => {
+                        btn4.classList.remove('visible');
+                    });
+                    reviewSteps[k].classList.add('visible');
+                    btn2.classList.add('visible');
+                }
             })
         })
     }
 }
 
 starProcessReview();
+
+let ourDateBlock = [...document.querySelectorAll('.date-js-format')];
+
+function getCurrentDateFormat() {
+    if (ourDateBlock.length) {
+        ourDateBlock.forEach((btn) => {
+            var dateObj = new Date();
+            var month = dateObj.getUTCMonth() + 1; //months from 1-12
+            var day = dateObj.getUTCDate();
+            var year = dateObj.getUTCFullYear();
+            let d = btn.querySelector('.djf-d');
+            let m = btn.querySelector('.djf-m');
+            let y = btn.querySelector('.djf-y');
+            btn.innerHTML = dateObj.toLocaleDateString('pt-PT');
+            // d.innerHTML = day;
+            // m.innerHTML = month;
+            // y.innerHTML = year;
+        })
+    }
+}
+
+getCurrentDateFormat();
 
 
 
