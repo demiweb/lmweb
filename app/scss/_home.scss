@@ -14,6 +14,7 @@
     overflow: hidden;
     display: inline-block;
     $t: 0.03s;
+
     padding: 0.2em 0.2em;
     margin: -0.2em;
 
@@ -1386,11 +1387,17 @@ body.home main .footer {
       height: 100%;
       overflow: hidden;
       object-fit: cover;
+      display: flex;
+      justify-content: center;
 
       img {
-        width: 150%;
-        height: 150%;
+        //width: 150%;
+        width: 100%;
+        //height: 150%;
+        height: 100%;
         object-fit: cover;
+        transform: translate(0, 0) !important;
+        margin: 0 !important;
         //transition: transform 0.3s ease;
       }
     }
@@ -1536,6 +1543,21 @@ body.home main .footer {
       margin-right: 20px;
     }
   }
+}
+body:not(.home) {
+  .our-blog__container {
+    .our-projects__head {
+      flex-direction: row;
+    }
+  }
+}
+@media screen and (min-width: 1051px) {
+  body:not(.home) {
+    .single-blog .card .img img {
+      margin-top: -10%;
+    }
+  }
+
 }
 
 .our-blog__list {
@@ -1981,6 +2003,14 @@ body.home main .footer {
     font-size: 20px;
     line-height: 1.1;
   }
+
+    body:not(.home) {
+      .single-blog .card .img img {
+        margin-top: -10%;
+      }
+    }
+
+
 }
 
 @media screen and (max-width: 850px) {
@@ -2500,6 +2530,9 @@ body.home main .footer {
       width: 230%;
     }
   }
+  .single-project .card .img img {
+    margin: 0 !important;
+  }
 }
 
 .review-step {
@@ -2973,6 +3006,9 @@ body.home main .footer {
       padding-bottom: 25px;
     }
   }
+  .single-project:nth-child(odd) .card .img img {
+    margin: 0 !important;
+  }
   .date-js-format {
     font-size: 1.5vw;
     bottom: 60%;
@@ -3056,7 +3092,7 @@ body.home main .footer {
 }
 @media screen and (max-width: 360px) {
   .date-js-format {
-    direction: none;
+    display: none;
   }
 }
 

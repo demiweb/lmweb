@@ -1512,18 +1512,20 @@ var offset = headerMenRect.right - brb.right;
 
 // console.log(offset);
 function lineCur() {
-    var cur = document.querySelector('.header-menu ul li.current-menu-item');
-    var rightRect2 = cur.getBoundingClientRect().right;
-    var width2 = cur.offsetWidth;
-    var offSet2 = headerMenRect.right - rightRect2;
-    if (cur) {
-        lineInd.style.setProperty('--r', `${offSet2}px`);
-        lineInd.style.setProperty('--w', `${width2}px`);
+    if(document.querySelector('.header-menu ul li.current-menu-item')) {
+        var cur = document.querySelector('.header-menu ul li.current-menu-item');
+        var rightRect2 = cur.getBoundingClientRect().right;
+        var width2 = cur.offsetWidth;
+        var offSet2 = headerMenRect.right - rightRect2;
+        if (cur) {
+            lineInd.style.setProperty('--r', `${offSet2}px`);
+            lineInd.style.setProperty('--w', `${width2}px`);
 
-    } else {
-        lineInd.style.setProperty('--r', `${0}px`);
-        lineInd.style.setProperty('--w', `${0}px`);
+        } else {
+            lineInd.style.setProperty('--r', `${0}px`);
+            lineInd.style.setProperty('--w', `${0}px`);
 
+        }
     }
 }
 
