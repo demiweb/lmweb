@@ -1678,6 +1678,80 @@ p {
       margin-top: 40px; }
     .single-project__hero .left .btn {
       margin-top: 40px; }
+  .single-project__hero .left.error-block {
+    margin-right: auto;
+    margin-left: auto;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+
+.single-project__hero .left p.class-error {
+  font-size: 160px;
+  line-height: 1.2;
+  display: inline-block;
+  color: transparent;
+  background-image: url("../img/background-text1.png");
+  -webkit-background-clip: text;
+  -webkit-animation: changeBackground 12s linear infinite;
+          animation: changeBackground 12s linear infinite;
+  background-position: 0 0;
+  background-size: 400% 400%;
+  text-shadow: 0 0 8px rgba(28, 246, 208, 0.51); }
+  .single-project__hero .left p.class-error ~ .title {
+    font-size: 50px;
+    text-align: center; }
+
+@-webkit-keyframes changeBackground {
+  0% {
+    text-shadow: 0 0 8px rgba(28, 246, 208, 0.51);
+    background-size: 400% 400%; }
+  20% {
+    background-size: 200% 200%;
+    text-shadow: 0 0 8px rgba(120, 145, 237, 0.51); }
+  40% {
+    background-size: 300% 300%;
+    text-shadow: 0 0 8px rgba(80, 93, 244, 0.47); }
+  50% {
+    text-shadow: 0 0 8px rgba(28, 246, 208, 0.51);
+    background-size: 300% 250%; }
+  65% {
+    text-shadow: 0 0 8px rgba(80, 93, 244, 0.47);
+    background-size: 100% 150%; }
+  75% {
+    background-size: 210% 450%;
+    text-shadow: 0 0 8px rgba(120, 145, 237, 0.51); }
+  90% {
+    text-shadow: 0 0 8px rgba(80, 93, 244, 0.47);
+    background-size: 300% 210%; }
+  100% {
+    text-shadow: 0 0 8px rgba(28, 246, 208, 0.51);
+    background-size: 400% 400%; } }
+
+@keyframes changeBackground {
+  0% {
+    text-shadow: 0 0 8px rgba(28, 246, 208, 0.51);
+    background-size: 400% 400%; }
+  20% {
+    background-size: 200% 200%;
+    text-shadow: 0 0 8px rgba(120, 145, 237, 0.51); }
+  40% {
+    background-size: 300% 300%;
+    text-shadow: 0 0 8px rgba(80, 93, 244, 0.47); }
+  50% {
+    text-shadow: 0 0 8px rgba(28, 246, 208, 0.51);
+    background-size: 300% 250%; }
+  65% {
+    text-shadow: 0 0 8px rgba(80, 93, 244, 0.47);
+    background-size: 100% 150%; }
+  75% {
+    background-size: 210% 450%;
+    text-shadow: 0 0 8px rgba(120, 145, 237, 0.51); }
+  90% {
+    text-shadow: 0 0 8px rgba(80, 93, 244, 0.47);
+    background-size: 300% 210%; }
+  100% {
+    text-shadow: 0 0 8px rgba(28, 246, 208, 0.51);
+    background-size: 400% 400%; } }
 
 .project-rules {
   width: 100%;
@@ -3858,6 +3932,8 @@ p {
       max-width: 100%; } }
 
 @media screen and (max-width: 600px) {
+  .single-project__hero .left p.class-error ~ .title {
+    font-size: 36px; }
   .contacts {
     padding: 30px 15px; }
     .contacts .column-cont {
