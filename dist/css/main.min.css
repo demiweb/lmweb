@@ -1686,17 +1686,90 @@ p {
             align-items: center; }
 
 .single-project__hero .left p.class-error {
-  font-size: 160px;
+  font-size: 180px;
   line-height: 1.2;
-  display: inline-block;
-  color: transparent;
-  background-image: url("../img/background-text1.png");
-  -webkit-background-clip: text;
-  -webkit-animation: changeBackground 12s linear infinite;
-          animation: changeBackground 12s linear infinite;
-  background-position: 0 0;
-  background-size: 400% 400%;
-  text-shadow: 0 0 8px rgba(28, 246, 208, 0.51); }
+  color: rgba(255, 255, 255, 0);
+  position: relative; }
+  .single-project__hero .left p.class-error a {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+    height: 50px;
+    width: auto;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease;
+    pointer-events: none; }
+  .single-project__hero .left p.class-error img {
+    width: auto;
+    height: 100%; }
+  .single-project__hero .left p.class-error::before, .single-project__hero .left p.class-error::after {
+    top: 0;
+    left: 0;
+    font-size: inherit;
+    line-height: inherit;
+    content: attr(data-text);
+    position: absolute;
+    display: inline-block;
+    color: transparent;
+    background-image: url("../img/background-text1.png");
+    -webkit-background-clip: text;
+    -webkit-animation: changeBackground 12s linear infinite;
+            animation: changeBackground 12s linear infinite;
+    background-position: 0 0;
+    background-size: 400% 400%;
+    text-shadow: 0 0 8px rgba(28, 246, 208, 0.51); }
+  .single-project__hero .left p.class-error::before {
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 50%, 0 50%);
+            clip-path: polygon(0 0, 100% 0%, 100% 50%, 0 50%);
+    -webkit-transition: -webkit-transform 0.4s ease, -webkit-filter 0.3s ease;
+    transition: -webkit-transform 0.4s ease, -webkit-filter 0.3s ease;
+    -o-transition: transform 0.4s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.3s ease, -webkit-transform 0.4s ease, -webkit-filter 0.3s ease; }
+  .single-project__hero .left p.class-error::after {
+    -webkit-clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+            clip-path: polygon(0 50%, 100% 50%, 100% 100%, 0 100%);
+    -webkit-transition: -webkit-transform 0.4s ease, -webkit-filter 0.3s ease;
+    transition: -webkit-transform 0.4s ease, -webkit-filter 0.3s ease;
+    -o-transition: transform 0.4s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.3s ease, -webkit-transform 0.4s ease, -webkit-filter 0.3s ease; }
+  .single-project__hero .left p.class-error:hover a {
+    pointer-events: auto;
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease;
+    -o-transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease; }
+  .single-project__hero .left p.class-error:hover::before {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+    -webkit-transform: translate(0, -14%);
+        -ms-transform: translate(0, -14%);
+            transform: translate(0, -14%);
+    -webkit-transition: -webkit-transform 0.4s ease, -webkit-filter 0.3s ease;
+    transition: -webkit-transform 0.4s ease, -webkit-filter 0.3s ease;
+    -o-transition: transform 0.4s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.3s ease, -webkit-transform 0.4s ease, -webkit-filter 0.3s ease; }
+  .single-project__hero .left p.class-error:hover::after {
+    -webkit-filter: blur(4px);
+            filter: blur(4px);
+    -webkit-transform: translate(0, 14%);
+        -ms-transform: translate(0, 14%);
+            transform: translate(0, 14%);
+    -webkit-transition: -webkit-transform 0.4s ease, -webkit-filter 0.3s ease;
+    transition: -webkit-transform 0.4s ease, -webkit-filter 0.3s ease;
+    -o-transition: transform 0.4s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.3s ease;
+    transition: transform 0.4s ease, filter 0.3s ease, -webkit-transform 0.4s ease, -webkit-filter 0.3s ease; }
   .single-project__hero .left p.class-error ~ .title {
     font-size: 50px;
     text-align: center; }
