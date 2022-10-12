@@ -117,12 +117,17 @@ function canvasStarts() {
         var contextCanvas = canvasInner.getContext("2d");
         var frameCount = 84;
         var currentFrame = index => (
-            `./img/canv/${index.toString()}.png`
+            // `./img/canv/${index.toString()}.png`
+            `/lmdev/wp-content/themes/LM/img/canv/${index.toString()}.png`
         );
+
         var preloadImages = () => {
             for (var i = 0; i < frameCount; i++) {
                 var imgCanvas = new Image();
+
                 imgCanvas.src = currentFrame(i);
+                // console.log(window.location.origin);
+                // console.log(imgCanvas.src);
             }
         }
         var html = canvCont;
@@ -865,8 +870,8 @@ function ourSecScroll() {
             let part = 140 - ((btnToTop / h) * 100);
             let dp = btn.querySelector('.drop-lines');
 
-            console.log(part);
-            console.log(btnToTop);
+            // console.log(part);
+            // console.log(btnToTop);
             let lines = btn.querySelectorAll('.line');
 
             if (part >= 100) {
@@ -1628,6 +1633,47 @@ function controlVideo() {
 }
 
 controlVideo();
+
+var videoCont2 = [...document.querySelectorAll('.video-js2')];
+var videoModal2 = [...document.querySelectorAll('.video-modal')];
+
+function controlVideo2() {
+    if (videoCont2.length) {
+        videoCont2.forEach((btn, k) => {
+
+            var srcVid = btn.dataset.link;
+
+
+            var modVid = videoModal2[0].querySelector('iframe');
+            var modSrc = modVid.src;
+
+
+            // console.log(srcVid);
+            btn.addEventListener('click', () => {
+                videoModal2[0].querySelector('iframe').src = srcVid;
+                videoModal2[0].classList.add('opened');
+                document.body.classList.add('no-scroll');
+
+            });
+            videoModal2[0].addEventListener('click', () => {
+                videoModal2[0].classList.remove('opened');
+                document.body.classList.remove('no-scroll');
+                videoModal2[0].querySelector('iframe').src = '';
+
+            });
+            modVid.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+            videoModal2[0].querySelector('.close-video').addEventListener('click', () => {
+                videoModal2[0].classList.remove('opened');
+                document.body.classList.remove('no-scroll');
+                videoModal2[0].querySelector('iframe').src = '';
+            })
+        })
+    }
+}
+
+controlVideo2();
 //video modal control
 
 //typed
