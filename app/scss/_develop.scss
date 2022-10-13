@@ -1756,6 +1756,7 @@ body {
 }
 
 @media screen and (max-width: 900px) {
+
   .free-text {
     .container {
 
@@ -2099,6 +2100,21 @@ body {
     z-index: 2;
   }
 
+  &.video-single {
+    height: auto;
+
+    .video-hero__cont {
+      padding-top: 160px;
+      padding-bottom: 120px;
+
+      .title {
+        max-width: 1000px;
+        text-align: center;
+        justify-content: center;
+      }
+    }
+  }
+
   .bg {
     position: absolute;
     z-index: 1;
@@ -2143,10 +2159,10 @@ body {
 
 .video-section {
   width: 100%;
-  padding-top:  160px;
+  padding-top: 160px;
   padding-bottom: 240px;
-  margin-top:  0;
-  margin-bottom:  0;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .video-section__cont {
@@ -2156,6 +2172,69 @@ body {
   justify-content: flex-start;
   flex-wrap: wrap;
   gap: 100px;
+}
+
+.single-video-page {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-width: 1154px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 75px;
+  margin-left: auto;
+  margin-right: auto;
+
+  .img {
+    cursor: pointer;
+    width: 100%;
+    height: 0;
+    position: relative;
+    padding-top: 56%;
+    overflow: hidden;
+    margin-bottom: 150px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+      z-index: 1;
+    }
+
+    &::after {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      display: inline-block;
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: transform 0.3s ease;
+      z-index: 2;
+      background: url("../img/play-poligon.svg") no-repeat center / 16px, #00FFCC;
+    }
+  }
+
+  &:hover {
+    .img {
+      &::after {
+        transform: translate(-50%, -50%) scale(1.2);
+        transition: transform 0.3s ease;
+
+      }
+    }
+
+    .text {
+      span, p {
+        text-decoration: underline;
+      }
+    }
+  }
 }
 
 .single-video-block {
@@ -2198,6 +2277,7 @@ body {
       background: url("../img/play-poligon.svg") no-repeat center / 16px, #00FFCC;
     }
   }
+
   &:hover {
     .img {
       &::after {
@@ -2206,6 +2286,7 @@ body {
 
       }
     }
+
     .text {
       span, p {
         text-decoration: underline;
@@ -2245,7 +2326,18 @@ body {
   }
 }
 
+@media screen and (max-width: 1610px) {
+  .video-hero.video-single .video-hero__cont .title {
+    max-width: 600px;
+  }
+  .single-video-page .img {
+    margin-bottom: 70px;
+  }
+}
+
 @media screen and (max-width: 1500px) {
+
+
   .video-section__cont {
     gap: 50px;
   }
@@ -2255,15 +2347,19 @@ body {
   }
   .single-video-block {
     width: calc(50% - 25px);
+
     .img {
       padding-top: 52%;
     }
+
     .text {
       margin-top: 30px;
+
       span {
         font-size: 28px;
         margin-bottom: 10px;
       }
+
       p {
         font-size: 18px;
         line-height: 1.2;
@@ -2271,6 +2367,7 @@ body {
     }
   }
 }
+
 @media screen and (max-width: 1400px) {
   .contacts {
     padding: 72px;
@@ -2518,6 +2615,10 @@ main {
 }
 
 @media screen and (max-width: 1050px) {
+  .video-hero.video-single .video-hero__cont {
+    padding-top: 60px;
+    padding-bottom: 70px;
+  }
 
   .video-section__cont {
     gap: 40px;
@@ -2528,15 +2629,19 @@ main {
   }
   .single-video-block {
     width: calc(50% - 20px);
+
     .img {
       padding-top: 49%;
     }
+
     .text {
       margin-top: 20px;
+
       span {
         font-size: 22px;
         margin-bottom: 7px;
       }
+
       p {
         font-size: 16px;
         line-height: 1.2;
@@ -2758,16 +2863,43 @@ main {
   }
 }
 
+@media screen and (min-width: 701px) {
+  .video-hero {
+    &.video-single {
+      .bg {
+        &::after {
+          background: linear-gradient(360deg, #000000 5.47%, rgba(0, 0, 0, 0) 85.26%), linear-gradient(270deg, #000000 64.79%, rgba(0, 0, 0, 0) 80%), linear-gradient(180deg, #000000 1.94%, rgba(0, 0, 0, 0) 49.94%);
+        }
+      }
+    }
+  }
+}
+
 @media screen and (max-width: 700px) {
+
+  .single-video-page .img::after {
+    width: 36px;
+    height: 36px;
+    background: url(../img/play-poligon.svg) no-repeat center/8px, #00FFCC;
+  }
+  .single-video-page {
+    margin-bottom: 30px;
+    .img {
+      margin-bottom: 50px;
+    }
+  }
+
   .video-hero {
     height: auto;
     background: #000;
+
     .bg {
       width: 100%;
+
       &::after {
         background: linear-gradient(90deg, rgba(0, 0, 0, 0.3) 6.81%, rgba(0, 0, 0, 0) 61.95%), linear-gradient(360deg, #000000 8.47%, rgba(0, 0, 0, 0) 85.26%), linear-gradient(270deg, rgba(0, 0, 0, 0.8) 5.48%, rgba(0, 0, 0, 0) 49.87%), linear-gradient(180deg, #000000 1.94%, rgba(0, 0, 0, 0) 60.61%);
-
       }
+
       img {
         width: 100%;
         height: 100%;
@@ -2785,20 +2917,25 @@ main {
   }
   .single-video-block {
     width: 100%;
+
     .img {
       padding-top: 56%;
+
       &::after {
         width: 36px;
         height: 36px;
         background: url("../img/play-poligon.svg") no-repeat center / 8px, #00FFCC;
       }
     }
+
     .text {
       margin-top: 25px;
+
       span {
         font-size: 14px;
-        margin-bottom:  20px;
+        margin-bottom: 20px;
       }
+
       p {
         max-width: 270px;
         font-size: 12px;
@@ -3009,6 +3146,9 @@ main {
 }
 
 @media screen and (max-width: 600px) {
+  .video-hero.video-single .video-hero__cont .title {
+    max-width: 320px;
+  }
   .single-project__hero .left p.class-error ~ .title {
     font-size: 36px;
   }
@@ -3221,6 +3361,7 @@ main {
     padding-top: 63px !important;
   }
 }
+
 @media screen and (max-width: 425px) {
   .article {
     width: calc(100% + 30px);
