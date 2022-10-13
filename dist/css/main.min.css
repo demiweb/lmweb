@@ -3810,6 +3810,8 @@ p {
     -o-transition: transform 0.3s ease;
     transition: transform 0.3s ease;
     transition: transform 0.3s ease, -webkit-transform 0.3s ease; }
+  .single-video-block:hover .text span, .single-video-block:hover .text p {
+    text-decoration: underline; }
   .single-video-block .text {
     margin-top: 50px;
     width: 100%;
@@ -3835,7 +3837,7 @@ p {
       color: #FFFFFF;
       display: inline-block;
       max-width: 440px;
-      margin-bottom: 24px; }
+      margin-bottom: 18px; }
     .single-video-block .text p {
       font-style: normal;
       font-weight: 400;

@@ -2206,6 +2206,11 @@ body {
 
       }
     }
+    .text {
+      span, p {
+        text-decoration: underline;
+      }
+    }
   }
 
   .text {
@@ -2225,7 +2230,7 @@ body {
       color: #FFFFFF;
       display: inline-block;
       max-width: 440px;
-      margin-bottom: 24px;
+      margin-bottom: 18px;
     }
 
     p {
